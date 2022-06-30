@@ -16,4 +16,3 @@ compromissos agendados.
 
 - Lucas Mateus da Silva
 - Vinicius Maia Marinho
-- Isa

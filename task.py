@@ -36,7 +36,7 @@ while escolha != "0":
     print("===   Opção Invalida   ===")
   input("Tecle ENTER para continuar")
   
-  os.system('cls')
+  os.system('cls') #cls no lugar de clear no windows
 
   print('========================= ')
   print('        SIG-Task          ')

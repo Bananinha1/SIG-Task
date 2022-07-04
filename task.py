@@ -1,10 +1,12 @@
 import calendar
 import os
-os.system('clear')
+import datetime
+os.system('cls') #clear so funcionar no linux, pra windows o comando é cls
 
+anomenu = datetime.datetime.now().year #assim o programa funcionara pra qualquer ano, então é bom trabalhar sempre com datas variaveis
 
-print ("O calendário do ano 2022 é:")
-print (calendar.calendar(2022))
+print (f"O calendário do ano {anomenu} é:")
+print (calendar.calendar(anomenu))
 
 print('========================= ')
 print('        SIG-Task          ')
@@ -34,7 +36,8 @@ while escolha != "0":
     print("===   Opção Invalida   ===")
   input("Tecle ENTER para continuar")
   
-  os.system('clear')
+  os.system('cls')
+
   print('========================= ')
   print('        SIG-Task          ')
   print('========================= ')

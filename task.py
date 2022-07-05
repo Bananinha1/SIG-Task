@@ -23,7 +23,7 @@ print('        SIG-Task          ')
 print('========================= ')
 print('  1 - Seleção de usuário  ')
 print('  2 - Cadastrar usuário   ')
-print('  3 - Alterar usuário     ')
+print('  3 - Atualizar usuário   ')
 print('  4 - Deletar             ')
 print('  0 - Sair                ')
 esc1 = input('Escolha sua opção: ')
@@ -43,17 +43,23 @@ while esc1 != "0":
             us[nome] = senha
         print("=== Em Desenvolvimento ===")
     elif esc1 == "3":
-        print("===  Alterar usuário   ===")
+        print("===  Atualizar usuário   =")
         nome = input('Insira o nome usuário a se mudar:')
         if nome in us.keys():
             nome2 = input('Insira o novo nome: ')
             senha = input('Insira a nova senha: ')
             us[nome2] = senha
             del us[nome]
+        else:
+            print('Nome não encontrado!')
         print("=== Em Desenvolvimento ===")
     elif esc1 == "4":
         print("===   Função Deletar   ===")
-        print("=== Em Desenvolvimento ===")
+        nome = input('Insira o usuário que será deletado:')
+        if nome in us.keys():
+            del us[nome]
+        else:
+            print("Usuário não encontrado")
     else:
         print("===   Opção Invalida   ===")
     input("Tecle ENTER para continuar")
@@ -65,7 +71,7 @@ while esc1 != "0":
     print('========================= ')
     print('  1 - Seleção de usuário  ')
     print('  2 - Cadastrar usuário   ')
-    print('  3 - Alterar usuário     ')
+    print('  3 - Atualizar usuário   ')
     print('  4 - Deletar             ')
     print('  0 - Sair                ')
     esc1 = input('Insira: ')

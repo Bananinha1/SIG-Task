@@ -1,12 +1,22 @@
 import calendar
 import os
 import datetime
-os.system('cls') #clear so funcionar no linux, pra windows o comando é cls
+import pickle  # biblioteca pra gravar o dicionario inteiro no arquivo
+# usar a função dump para passar tudo de um dicionario para o arquivo de uma vez só
+os.system('cls')  # clear so funcionar no linux, pra windows o comando é cls
+us = {
 
-anomenu = datetime.datetime.now().year #assim o programa funcionara pra qualquer ano, então é bom trabalhar sempre com datas variaveis
+}
+l = ['as', 'adsad', 'fafasfsa']
+arq = open('users', 'wt')  # criando arquivo de usuários
+for i in l:
+    arq.write(i + '\n')  # pasando da lista para o arquivo
+arq.close()
+# assim o programa funcionara pra qualquer ano, então é bom trabalhar sempre com datas variaveis
+anomenu = datetime.datetime.now().year
 
-print (f"O calendário do ano {anomenu} é:")
-print (calendar.calendar(anomenu))
+print(f"O calendário do ano {anomenu} é:")
+print(calendar.calendar(anomenu))
 
 print('========================= ')
 print('        SIG-Task          ')
@@ -16,35 +26,48 @@ print('  2 - Cadastrar usuário   ')
 print('  3 - Alterar usuário     ')
 print('  4 - Deletar             ')
 print('  0 - Sair                ')
-escolha = input('Escolha sua opção: ')
+esc1 = input('Escolha sua opção: ')
 
-while escolha != "0":
-  
-  if escolha == "1":
-    print("=== Seleção de usuário ===")
-    print("=== Em Desenvolvimento ===")
-  elif escolha == "2":
-    print("=== Cadastro de usuário ===")
-    print("=== Em Desenvolvimento ===")
-  elif escolha == "3":
-    print("===  Alterar usuário   ===")
-    print("=== Em Desenvolvimento ===")
-  elif escolha == "4":
-    print("===   Função Deletar   ===")
-    print("=== Em Desenvolvimento ===")
-  else:
-    print("===   Opção Invalida   ===")
-  input("Tecle ENTER para continuar")
-  
-  os.system('cls') #cls no lugar de clear no windows
+while esc1 != "0":
 
-  print('========================= ')
-  print('        SIG-Task          ')
-  print('========================= ')
-  print('  1 - Seleção de usuário  ')
-  print('  2 - Cadastrar usuário   ')
-  print('  3 - Alterar usuário     ')
-  print('  4 - Deletar             ')
-  print('  0 - Sair                ')
-  escolha = input ('Insira: ')
+    if esc1 == "1":
+        print("=== Seleção de usuário ===")
+        print("=== Em Desenvolvimento ===")
+    elif esc1 == "2":
+        print("=== Cadastro de usuário ===")
+        nome = input('Insira seu nome: ')
+        senha = input('Insira sua senha:')
+        if us.get(nome):
+            print('Usuário já existe', nome)
+        else:
+            us[nome] = senha
+        print("=== Em Desenvolvimento ===")
+    elif esc1 == "3":
+        print("===  Alterar usuário   ===")
+        nome = input('Insira o nome usuário a se mudar:')
+        if nome in us.keys():
+            nome2 = input('Insira o novo nome: ')
+            senha = input('Insira a nova senha: ')
+            us[nome2] = senha
+            del us[nome]
+        print("=== Em Desenvolvimento ===")
+    elif esc1 == "4":
+        print("===   Função Deletar   ===")
+        print("=== Em Desenvolvimento ===")
+    else:
+        print("===   Opção Invalida   ===")
+    input("Tecle ENTER para continuar")
+
+    os.system('cls')  # cls no lugar de clear no windows
+
+    print('========================= ')
+    print('        SIG-Task          ')
+    print('========================= ')
+    print('  1 - Seleção de usuário  ')
+    print('  2 - Cadastrar usuário   ')
+    print('  3 - Alterar usuário     ')
+    print('  4 - Deletar             ')
+    print('  0 - Sair                ')
+    esc1 = input('Insira: ')
 print("Fim")
+print(us)

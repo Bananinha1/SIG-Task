@@ -5,18 +5,21 @@ import pickle  # biblioteca pra gravar o dicionario inteiro no arquivo
 
 os.system('cls')  # clear so funcionar no linux, pra windows o comando é cls
 
-#dicionario com os usuarios, vamos usar os integrantes do grupo como padrão
-# isso aqui a gente apaga depois se não da problema toda vez q reiniciar o programa
+# dicionario com os usuarios, vamos usar os integrantes do grupo como padrão
 us = {
 
-    "Lucas" : "1234",
-    "Vinicius" : "4321"
 
 }
 
-arq = open('users.dat', 'wb')  # criando arquivo de usuários
-pickle.dump(us, arq) # usar a função dump para passar tudo de um dicionario para o arquivo de uma vez só
-arq.close()
+#transformar isso numa função??
+
+try:
+    arq = open("users.dat", "rb")
+    us = pickle.load(arq)
+    arq.close()
+except:
+    arq = open("users.dat", "wb")
+    arq.close()
 
 
 # assim o programa funcionara pra qualquer ano, então é bom trabalhar sempre com datas variaveis
@@ -41,30 +44,22 @@ while esc1 != "0":
 
         print("=== Seleção de usuário ===\n")
 
-        try:
-            arq = open("users.dat", "rb")
-            us = pickle.load(arq)
-            arq.close()
-        except: 
-            arq = open("users.dat", "wb")
-            arq.close()
-
         for users in us:
             print(users)
+        print()
 
-        wu = input("Informe com qual Usuario deseja entrar: ") 
+        wu = input("Informe com qual Usuario deseja entrar: ")
 
         if us.get(wu):
 
             su = input("Insira a senha: ")
-            while su != us[wu]: #valida a senha
+            while su != us[wu]:  # valida a senha
                 su = input("Senha incorreta, tente novamente: ")
 
             print("Função para entrar no proximo crudd")
 
-
         else:
-             print(f'Usuário {wu} não encontrado')
+            print(f'Usuário {wu} não encontrado')
 
         print("=== Em Desenvolvimento ===")
 
@@ -72,29 +67,37 @@ while esc1 != "0":
 
         print("=== Cadastro de usuário ===")
         nome = input('Insira seu nome: ')
-        senha = input('Insira sua senha:')
+        senha = input('Insira sua senha: ')
 
         if us.get(nome):
 
             print('Usuário já existe', nome)
         else:
 
+
+            #transformar em função??
             us[nome] = senha
             arq = open('users.dat', 'wb')
-            pickle.dump(us, arq) 
+            pickle.dump(us, arq)
             arq.close()
 
         print("=== Em Desenvolvimento ===")
+
     elif esc1 == "3":
 
         print("===  Atualizar usuário   =")
-        nome = input('Insira o nome usuário a se mudar:')
+        nome = input('Insira o nome usuário a se mudar: ')
         if nome in us.keys():
 
             nome2 = input('Insira o novo nome: ')
             senha = input('Insira a nova senha: ')
             us[nome2] = senha
             del us[nome]
+            #função
+            arq = open('users.dat', 'wb')
+            pickle.dump(us, arq)
+            arq.close()
+
         else:
 
             print('Nome não encontrado!')
@@ -104,9 +107,13 @@ while esc1 != "0":
     elif esc1 == "4":
 
         print("===   Função Deletar   ===")
-        nome = input('Insira o usuário que será deletado:')
+        nome = input('Insira o usuário que será deletado: ')
         if nome in us.keys():
             del us[nome]
+            #função
+            arq = open('users.dat', 'wb')
+            pickle.dump(us, arq)
+            arq.close()
         else:
             print("Usuário não encontrado")
     else:

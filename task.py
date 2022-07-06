@@ -6,11 +6,11 @@ import pickle  # biblioteca pra gravar o dicionario inteiro no arquivo
 os.system('cls')  # clear so funcionar no linux, pra windows o comando é cls
 
 #dicionario com os usuarios, vamos usar os integrantes do grupo como padrão
-
+# isso aqui a gente apaga depois se não da problema toda vez q reiniciar o programa
 us = {
 
-    "Lucas" : ["1234"],
-    "Vinicius" : ["4321"]
+    "Lucas" : "1234",
+    "Vinicius" : "4321"
 
 }
 
@@ -38,7 +38,9 @@ esc1 = input('Escolha sua opção: ')
 while esc1 != "0":
 
     if esc1 == "1":
+
         print("=== Seleção de usuário ===\n")
+
         try:
             arq = open("users.dat", "rb")
             us = pickle.load(arq)
@@ -49,6 +51,20 @@ while esc1 != "0":
 
         for users in us:
             print(users)
+
+        wu = input("Informe com qual Usuario deseja entrar: ") 
+
+        if us.get(wu):
+
+            su = input("Insira a senha: ")
+            while su != us[wu]: #valida a senha
+                su = input("Senha incorreta, tente novamente: ")
+
+            print("Função para entrar no proximo crudd")
+
+
+        else:
+             print(f'Usuário {wu} não encontrado')
 
         print("=== Em Desenvolvimento ===")
 

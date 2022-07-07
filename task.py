@@ -3,10 +3,12 @@ import os
 import datetime
 import pickle  # biblioteca pra gravar o dicionario inteiro no arquivo
 
+
 def savedic1(us):
     arq = open('users.dat', 'wb')
     pickle.dump(us, arq)
     arq.close()
+
 
 def telamenu():
     os.system('cls')
@@ -26,6 +28,7 @@ def telamenu():
     esc1 = input('Escolha sua opção: ')
     return esc1
 
+
 def lerdic1():
     try:
         arq = open("users.dat", "rb")
@@ -37,54 +40,53 @@ def lerdic1():
 
     return us
 
-us = lerdic1()
 
-esc1 = telamenu()
+def selectuser():
+    os.system("cls")
+    print("=== Seleção de usuário ===\n")
 
-while esc1 != "0":
+    for users in us:
+        print(users)
+    print()
 
-    if esc1 == "1":
+    wu = input("Informe com qual Usuario deseja entrar: ")
 
-        print("=== Seleção de usuário ===\n")
+    if us.get(wu):
 
-        for users in us:
-            print(users)
-        print()
+        su = input("Insira a senha: ")
+        while su != us[wu]:  # valida a senha
+            su = input("Senha incorreta, tente novamente: ")
 
-        wu = input("Informe com qual Usuario deseja entrar: ")
+        print("Função para entrar no proximo crudd")
 
-        if us.get(wu):
+    else:
+        print(f'Usuário {wu} não encontrado')
 
-            su = input("Insira a senha: ")
-            while su != us[wu]:  # valida a senha
-                su = input("Senha incorreta, tente novamente: ")
+    print("=== Em Desenvolvimento ===")
 
-            print("Função para entrar no proximo crudd")
 
-        else:
-            print(f'Usuário {wu} não encontrado')
+def caduser():
+    os.system("cls")
+    print("=== Cadastro de usuário ===")
+    nome = input('Insira seu nome: ')
+    senha = input('Insira sua senha: ')
 
-        print("=== Em Desenvolvimento ===")
+    if us.get(nome):
 
-    elif esc1 == "2":
+        print('Usuário já existe', nome)
+    else:
 
-        print("=== Cadastro de usuário ===")
-        nome = input('Insira seu nome: ')
-        senha = input('Insira sua senha: ')
+        us[nome] = senha
+        savedic1(us)
+        print("=== Cadastro efetuado ===")
 
-        if us.get(nome):
 
-            print('Usuário já existe', nome)
-        else:
-
-            us[nome] = senha
-            savedic1(us)
-            print("=== Cadastro efetuado ===")
-
-    elif esc1 == "3":
-
-        print("===  Atualizar usuário   =")
-        nome = input('Insira o nome usuário a se mudar: ')
+def atuser():
+    os.system("cls")
+    print("===  Atualizar usuário   =")
+    nome = input('Insira o nome usuário a se mudar: ')
+    crtz = input('Você tem certeza que deseja mudar? ')
+    if crtz.lower() in "sim":
         if nome in us.keys():
 
             nome2 = input('Insira o novo nome: ')
@@ -97,18 +99,48 @@ while esc1 != "0":
         else:
 
             print('Nome não encontrado!')
+    else:
+        print('Usuário não foi atualizado!')
 
 
-    elif esc1 == "4":
-
-        print("===   Função Deletar   ===")
-        nome = input('Insira o usuário que será deletado: ')
-        if nome in us.keys():
+def exuser():
+    os.system("cls")
+    print("===   Função Deletar   ===")
+    nome = input('Insira o usuário que será deletado: ')
+    if nome in us.keys():
+        su = input("Insira a senha: ")
+        while su != us[nome]:  # valida a senha
+            su = input("Senha incorreta, tente novamente: ")
+        if su == us[nome]:
             del us[nome]
             savedic1(us)
             print("=== Usuário Deletado ===")
-        else:
-            print("Usuário não encontrado")
+    else:
+        print("Usuário não encontrado")
+
+
+us = lerdic1()
+
+esc1 = telamenu()
+
+while esc1 != "0":
+
+    if esc1 == "1":
+
+        selectuser()
+
+    elif esc1 == "2":
+
+        caduser()
+
+    elif esc1 == "3":
+
+        atuser()
+
+    elif esc1 == "4":
+
+        exuser()
+
     else:
         print("===   Opção Invalida   ===")
 

@@ -9,6 +9,12 @@ def savedic1(us):
     arq.close()
 
 def telamenu():
+    os.system('cls')
+    anomenu = datetime.datetime.now().year
+    mesmenu = datetime.datetime.now().month
+
+    print(f"O calendário do seu mes {mesmenu} do ano {anomenu} é:")
+    print(calendar.month(anomenu, mesmenu))
     print('========================= ')
     print('        SIG-Task          ')
     print('========================= ')
@@ -17,32 +23,23 @@ def telamenu():
     print('  3 - Atualizar usuário   ')
     print('  4 - Deletar             ')
     print('  0 - Sair                ')
+    esc1 = input('Escolha sua opção: ')
+    return esc1
 
+def lerdic1():
+    try:
+        arq = open("users.dat", "rb")
+        us = pickle.load(arq)
+        arq.close()
+    except:
+        arq = open("users.dat", "wb")
+        arq.close()
 
-os.system('cls')  # clear so funcionar no linux, pra windows o comando é cls
+    return us
 
-# dicionario com os usuarios, vamos usar os integrantes do grupo como padrão
-us = {
+us = lerdic1()
 
-
-}
-
-try:
-    arq = open("users.dat", "rb")
-    us = pickle.load(arq)
-    arq.close()
-except:
-    arq = open("users.dat", "wb")
-    arq.close()
-
-# assim o programa funcionara pra qualquer ano, então é bom trabalhar sempre com datas variaveis
-anomenu = datetime.datetime.now().year
-
-print(f"O calendário do ano {anomenu} é:")
-print(calendar.calendar(anomenu))
-
-telamenu()
-esc1 = input('Escolha sua opção: ')
+esc1 = telamenu()
 
 while esc1 != "0":
 
@@ -117,8 +114,6 @@ while esc1 != "0":
 
     input("Tecle ENTER para continuar")
 
-    os.system('cls')  # cls no lugar de clear no windows
+    esc1 = telamenu()
 
-    telamenu()
-    esc1 = input('Insira: ')
 print("Fim")

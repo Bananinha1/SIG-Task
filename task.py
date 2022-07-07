@@ -69,13 +69,12 @@ def caduser():
     os.system("cls")
     print("=== Cadastro de usuário ===")
     nome = input('Insira seu nome: ')
-    senha = input('Insira sua senha: ')
 
     if us.get(nome):
 
-        print('Usuário já existe', nome)
+        print(f'Usuário {nome} já existe')
     else:
-
+        senha = input('Insira sua senha: ')
         us[nome] = senha
         savedic1(us)
         print("=== Cadastro efetuado ===")

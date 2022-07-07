@@ -85,22 +85,23 @@ def atuser():
     os.system("cls")
     print("===  Atualizar usuário   =")
     nome = input('Insira o nome usuário a se mudar: ')
-    crtz = input('Você tem certeza que deseja mudar? ')
-    if crtz.lower() in "sim":
-        if nome in us.keys():
+    if nome in us:
+        crtz = input('Você tem certeza que deseja mudar? ')
+        if crtz.lower() in "sim":
+            if nome in us.keys():
 
-            nome2 = input('Insira o novo nome: ')
-            senha = input('Insira a nova senha: ')
-            us[nome2] = senha
-            del us[nome]
-            savedic1(us)
-            print("=== Usuário Atualizado ===")
+                nome2 = input('Insira o novo nome: ')
+                senha = input('Insira a nova senha: ')
+                us[nome2] = senha
+                del us[nome]
+                savedic1(us)
+                print("=== Usuário Atualizado ===")
 
         else:
 
-            print('Nome não encontrado!')
+            print("Usuário não foi atualizado!")
     else:
-        print('Usuário não foi atualizado!')
+        print("Nome não encontrado!")
 
 
 def exuser():

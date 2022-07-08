@@ -7,6 +7,7 @@ def telatipo():
     os.system('cls')
     anomenu = datetime.datetime.now().year
     mesmenu = datetime.datetime.now().month
+
     print(f"O calendário do seu mes {mesmenu} do ano {anomenu} é:")
     print(calendar.month(anomenu, mesmenu))
     print('========================= ')

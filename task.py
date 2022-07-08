@@ -145,7 +145,7 @@ def lerdic2():
 
 
 us = lerdic1()
-ust = lerdic2
+ust = lerdic2()
 
 esc1 = telamenu()
 

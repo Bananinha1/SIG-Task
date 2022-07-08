@@ -76,7 +76,9 @@ def caduser():
     else:
         senha = input('Insira sua senha: ')
         us[nome] = senha
+        ust[nome] = []
         savedic1(us)
+        savedic2(ust)
         print("=== Cadastro efetuado ===")
 
 
@@ -92,7 +94,10 @@ def atuser():
                 nome2 = input('Insira o novo nome: ')
                 senha = input('Insira a nova senha: ')
                 us[nome2] = senha
+                vprov = ust[nome]
+                ust[nome2] = vprov
                 del us[nome]
+                del ust[nome]
                 savedic1(us)
                 print("=== Usuário Atualizado ===")
 
@@ -113,13 +118,34 @@ def exuser():
             su = input("Senha incorreta, tente novamente: ")
         if su == us[nome]:
             del us[nome]
+            del ust[nome]
+            savedic2(ust)
             savedic1(us)
             print("=== Usuário Deletado ===")
     else:
         print("Usuário não encontrado")
 
 
+def savedic2(ust):
+    arq1 = open('ustype.dat', 'wb')
+    pickle.dump(ust, arq1)
+    arq1.close()
+
+
+def lerdic2():
+    try:
+        arq1 = open("ustype.dat", "rb")
+        ust = pickle.load(arq1)
+        arq1.close()
+    except:
+        arq1 = open("ustype.dat", "wb")
+        arq1.close()
+
+    return ust
+
+
 us = lerdic1()
+ust = lerdic2
 
 esc1 = telamenu()
 

@@ -10,6 +10,12 @@ def savedic1(us):
     arq.close()
 
 
+def savedic3(usev):
+    arq2 = open('userevent.dat', 'wb')
+    pickle.dump(usev, arq2)
+    arq2.close()
+
+
 def telamenu():
     os.system('cls')
     anomenu = datetime.datetime.now().year
@@ -76,9 +82,11 @@ def caduser():
     else:
         senha = input('Insira sua senha: ')
         us[nome] = senha
-        ust[nome] = []
+        ust[nome] = [] 
+        usev[nome] = []
         savedic1(us)
         savedic2(ust)
+        savedic3(usev)
         print("=== Cadastro efetuado ===")
 
 
@@ -95,10 +103,15 @@ def atuser():
                 senha = input('Insira a nova senha: ')
                 us[nome2] = senha
                 vprov = ust[nome]
+                vprov2 = usev[nome]
                 ust[nome2] = vprov
+                usev[nome2] = vprov2
                 del us[nome]
                 del ust[nome]
+                del ust[nome]
                 savedic1(us)
+                savedic2(ust)
+                savedic3(usev)
                 print("=== Usuário Atualizado ===")
 
         else:
@@ -119,8 +132,10 @@ def exuser():
         if su == us[nome]:
             del us[nome]
             del ust[nome]
+            del usev[nome]
             savedic2(ust)
             savedic1(us)
+            savedic3(usev)
             print("=== Usuário Deletado ===")
     else:
         print("Usuário não encontrado")
@@ -144,8 +159,20 @@ def lerdic2():
     return ust
 
 
+def lerdic3():
+    try:
+        arq3 = open("userevent.dat", "rb")
+        usev = pickle.load(arq)
+        arq.close()
+    except:
+        arq3 = open("userevent.dat", "wb")
+        arq3.close()
+
+    return usev
+
 us = lerdic1()
 ust = lerdic2()
+usev = lerdic3()
 
 esc1 = telamenu()
 

@@ -66,14 +66,39 @@ def cadtipo():
     print("=== Cadastro de novo tipo de agenda ===")
     tipo = input('Insira o nome do tipo de agenda: ')
 
-    if tipo in ust:
+    if tipo in ust.values():
 
         print(f'Agenda do tipo: {tipo} já existe')
     else:
-        ust[nome] = tipo
+        vprov = ust[nome]
+        vprov.append(tipo)
+        del ust[nome]
+        ust[nome] = vprov
         savedic2(ust)
         print("=== Cadastro efetuado ===")
 
+
+# def attipo():
+#     os.system("cls")
+#     print("===  Atualizar Tipos de Evento   =")
+#     tipo = input('Insira o tipo de evento a se mudar: ')
+
+#     if tipo in ust.values():
+#         crtz = input('Você tem certeza que deseja mudar? ')
+#         if crtz.lower() in "sim":
+#             if tipo in us.values():
+
+#                 tipon = input('Insira o nova nomenclatura para esses eventos: ')
+#                 ust[nome] = tipo
+#                 del ust[nome]
+#                 savedic2(ust)
+#                 print("=== Tipo de evento Atualizado ===")
+
+#         else:
+
+#             print("Tipo de evento não foi atualizado!")
+#     else:
+#         print("Tipo não encontrado!")
 
 ust = lerdic2()
 

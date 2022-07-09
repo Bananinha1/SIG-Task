@@ -1,7 +1,7 @@
 import calendar
 import os
 import datetime
-import pickle  # biblioteca pra gravar o dicionario inteiro no arquivo
+import pickle 
 
 
 def savedic1(us):
@@ -82,7 +82,7 @@ def caduser():
     else:
         senha = input('Insira sua senha: ')
         us[nome] = senha
-        ust[nome] = ["Estudantil", "Profissional", "Pessoal"] 
+        ust[nome] = ["Estudantil", "Profissional", "Pessoal"]
         usev[nome] = []
         savedic1(us)
         savedic2(ust)
@@ -108,7 +108,7 @@ def atuser():
                 usev[nome2] = vprov2
                 del us[nome]
                 del ust[nome]
-                del ust[nome]
+                del usev[nome]
                 savedic1(us)
                 savedic2(ust)
                 savedic3(usev)
@@ -161,17 +161,20 @@ def lerdic2():
 
 def lerdic3():
     try:
-        arq3 = open("userevent.dat", "rb")
-        usev = pickle.load(arq)
-        arq.close()
+        arq2 = open("userevent.dat", "rb")
+        usev = pickle.load(arq2)
+        arq2.close()
     except:
-        arq3 = open("userevent.dat", "wb")
-        arq3.close()
+        arq2 = open("userevent.dat", "wb")
+        arq2.close()
 
     return usev
 
+
 us = lerdic1()
+
 ust = lerdic2()
+
 usev = lerdic3()
 
 esc1 = telamenu()
@@ -200,5 +203,6 @@ while esc1 != "0":
     input("Tecle ENTER para continuar")
 
     esc1 = telamenu()
+
 
 print("Fim")

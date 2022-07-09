@@ -3,6 +3,7 @@ import os
 import datetime
 import pickle
 
+
 def telatipo():
     os.system('cls')
     anomenu = datetime.datetime.now().year
@@ -21,10 +22,12 @@ def telatipo():
     esc2 = input('Escolha sua opção: ')
     return esc2
 
+
 def savedic2(ust):
     arq1 = open('ustype.dat', 'wb')
     pickle.dump(ust, arq1)
     arq1.close()
+
 
 def lerdic2():
     try:
@@ -36,6 +39,7 @@ def lerdic2():
         arq1.close()
 
     return ust
+
 
 def selectipos():
     os.system("cls")
@@ -60,18 +64,16 @@ def selectipos():
 def cadtipo():
     os.system("cls")
     print("=== Cadastro de novo tipo de agenda ===")
-    nome = input('Insira o nome do tipo de agenda: ')
+    tipo = input('Insira o nome do tipo de agenda: ')
 
-    if ust.get(nome):
+    if tipo in ust:
 
-        print(f'Agenda do tipo: {nome} já existe')
+        print(f'Agenda do tipo: {tipo} já existe')
     else:
-        senha = input('Insira sua senha: ')
-        us[nome] = senha
-        ust[nome] = [] #tipo de agenda, nome do evento, data, hora
-        savedic1(us)
+        ust[nome] = tipo
         savedic2(ust)
         print("=== Cadastro efetuado ===")
+
 
 ust = lerdic2()
 
@@ -84,8 +86,8 @@ while esc2 != "0":
 
     elif esc2 == "2":
 
-        print("Em construção!")
-    
+        cadtipo()
+
     elif esc2 == "3":
 
         print("Em construção!")
@@ -100,5 +102,3 @@ while esc2 != "0":
     input("Tecle ENTER para continuar")
 
     esc2 = telatipo()
-
-

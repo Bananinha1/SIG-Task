@@ -82,7 +82,7 @@ def caduser():
     else:
         senha = input('Insira sua senha: ')
         us[nome] = senha
-        ust[nome] = [] 
+        ust[nome] = ["Estudantil", "Profissional", "Pessoal"] 
         usev[nome] = []
         savedic1(us)
         savedic2(ust)

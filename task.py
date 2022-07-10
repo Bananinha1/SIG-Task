@@ -1,7 +1,7 @@
 import calendar
 import os
 import datetime
-import pickle 
+import pickle
 
 
 def savedic1(us):
@@ -58,12 +58,17 @@ def selectuser():
     wu = input("Informe com qual Usuario deseja entrar: ")
 
     if us.get(wu):
-
+        cont = 0
         su = input("Insira a senha: ")
-        while su != us[wu]:  # valida a senha
-            su = input("Senha incorreta, tente novamente: ")
 
-        print("Função para entrar no proximo crudd")
+        while su != us[wu] and cont < 5:  # valida a senha
+            su = input("Senha incorreta, tente novamente: ")
+            cont += 1
+        if cont == 5:
+            print('Número de tentativas de acesso excedidas')
+        elif su == us[wu]:
+            print('Usuário %s validado' % wu)
+            print("Função para entrar no proximo crudd")
 
     else:
         print(f'Usuário {wu} não encontrado')
@@ -127,9 +132,13 @@ def exuser():
     nome = input('Insira o usuário que será deletado: ')
     if nome in us.keys():
         su = input("Insira a senha: ")
-        while su != us[nome]:  # valida a senha
+        cont = 0
+        while su != us[nome] and cont < 5:  # valida a senha
             su = input("Senha incorreta, tente novamente: ")
-        if su == us[nome]:
+            cont += 1
+        if cont == 5:
+            print('Número de tentativas de acesso excedidas')
+        elif su == us[nome]:
             del us[nome]
             del ust[nome]
             del usev[nome]

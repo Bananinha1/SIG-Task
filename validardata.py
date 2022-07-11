@@ -1,5 +1,7 @@
 def inserirdata():
 
+    #ainda falta colocar pra validar de acordo com a data atual mas do jeito q ta pelo menos valida a data no bruto então ta valendo hehehehe
+
     valida = False
 
     while not(valida):

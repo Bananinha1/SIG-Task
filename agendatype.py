@@ -22,13 +22,13 @@ def telatipo():
     esc2 = input('Escolha sua opção: ')
     return esc2
 
-
+#rep
 def savedic2(ust):
     arq1 = open('ustype.dat', 'wb')
     pickle.dump(ust, arq1)
     arq1.close()
 
-
+#rep
 def lerdic2():
     try:
         arq1 = open("ustype.dat", "rb")
@@ -41,11 +41,11 @@ def lerdic2():
     return ust
 
 
-def selectipos():
+def selectipos(nome):
     os.system("cls")
     print("=== Seleção de tipo de Agenda ===\n")
 
-    for tipos in ust:
+    for tipos in ust[nome]:
         print(tipos)
     print()
 
@@ -61,12 +61,12 @@ def selectipos():
     print("=== Em Desenvolvimento ===")
 
 
-def cadtipo():
+def cadtipo(nome):
     os.system("cls")
     print("=== Cadastro de novo tipo de agenda ===")
     tipo = input('Insira o nome do tipo de agenda: ')
 
-    if tipo in ust.values():
+    if tipo in ust[nome]:
 
         print(f'Agenda do tipo: {tipo} já existe')
     else:
@@ -78,48 +78,107 @@ def cadtipo():
         print("=== Cadastro efetuado ===")
 
 
-# def attipo():
-#     os.system("cls")
-#     print("===  Atualizar Tipos de Evento   =")
-#     tipo = input('Insira o tipo de evento a se mudar: ')
+def attipo(nome):
+    os.system("cls")
+    print("===  Atualizar Tipos de Evento   =")
+    tipo = input('Insira o tipo de evento a se mudar: ')
 
-#     if tipo in ust.values():
-#         crtz = input('Você tem certeza que deseja mudar? ')
-#         if crtz.lower() in "sim":
-#             if tipo in us.values():
+    if tipo in ust[nome]:
+        crtz = input('Você tem certeza que deseja mudar? ')
+        if crtz.lower() in "sim":
+            if tipo in ust[nome]:
+                vprov = ust[nome]
+                vprov.remove(tipo)
+                tipon = input('Insira o nova nomenclatura para esses eventos: ')
+                vprov.append(tipon)
+                ust[nome]= vprov
+                attevs(nome, tipo, tipon)
+                savedic2(ust)
+                print("=== Tipo de evento Atualizado ===")
 
-#                 tipon = input('Insira o nova nomenclatura para esses eventos: ')
-#                 ust[nome] = tipo
-#                 del ust[nome]
-#                 savedic2(ust)
-#                 print("=== Tipo de evento Atualizado ===")
+        else:
 
-#         else:
+            print("Tipo de evento não foi atualizado!")
+    else:
+        print("Tipo não encontrado!")
 
-#             print("Tipo de evento não foi atualizado!")
-#     else:
-#         print("Tipo não encontrado!")
+def attevs(nome, tipo, tipon):
+    for event in usev[nome]:
+        if event[0] == tipo:
+            event[0] = tipon
+        savedic3(usev)
+
+
+def delevents(nome, tipo):
+    for event in usev[nome]:
+        if event[0] == tipo:
+            del event
+        savedic3(usev)
+
+
+
+def delevs(nome, tipo):
+    for event in usev[nome]:
+        if event[0] == tipo:
+            del event
+        savedic3(usev)
+
+#rep
+def savedic3(usev):
+    arq2 = open('userevent.dat', 'wb')
+    pickle.dump(usev, arq2)
+    arq2.close()
+
+#rep
+def lerdic3():
+    try:
+        arq2 = open("userevent.dat", "rb")
+        usev = pickle.load(arq2)
+        arq2.close()
+    except:
+        arq2 = open("userevent.dat", "wb")
+        arq2.close()
+
+    return usev
+
+
+def deletipo(nome):
+    os.system("cls")
+    print("===   Função Deletar   ===")
+    tipo = input('Insira o usuário que será deletado: ')
+    if tipo in ust[nome]:
+            vprov = ust[nome]
+            vprov.remove(tipo)
+            ust[nome]= vprov
+            delevents(nome, tipo)
+            savedic2(ust)
+            print("=== Tipo Deletado ===")
+    else:
+        print("Tipo não encontrado")
+
 
 ust = lerdic2()
+
+usev = lerdic3()
 
 esc2 = telatipo()
 
 while esc2 != "0":
     if esc2 == "1":
 
-        selectipos()
+        selectipos(nome)
 
     elif esc2 == "2":
 
-        cadtipo()
+        cadtipo(nome)
 
     elif esc2 == "3":
 
-        print("Em construção!")
+        attipo(nome)
 
     elif esc2 == "4":
 
-        print("Em construção!")
+        deletipo(nome)
 
     else:
         print("===   Opção Invalida   ===")

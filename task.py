@@ -2,6 +2,7 @@ import calendar
 import os
 import datetime
 import pickle
+from agendatype import *
 
 
 def savedic1(us):
@@ -68,7 +69,7 @@ def selectuser():
             print('Número de tentativas de acesso excedidas')
         elif su == us[wu]:
             print('Usuário %s validado' % wu)
-            print("Função para entrar no proximo crudd")
+            agendatype.modulo2(wu)
 
     else:
         print(f'Usuário {wu} não encontrado')
@@ -187,6 +188,7 @@ ust = lerdic2()
 usev = lerdic3()
 
 esc1 = telamenu()
+
 
 while esc1 != "0":
 

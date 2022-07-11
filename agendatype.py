@@ -22,13 +22,17 @@ def telatipo():
     esc2 = input('Escolha sua opção: ')
     return esc2
 
-#rep
+# rep
+
+
 def savedic2(ust):
     arq1 = open('ustype.dat', 'wb')
     pickle.dump(ust, arq1)
     arq1.close()
 
-#rep
+# rep
+
+
 def lerdic2():
     try:
         arq1 = open("ustype.dat", "rb")
@@ -89,9 +93,10 @@ def attipo(nome):
             if tipo in ust[nome]:
                 vprov = ust[nome]
                 vprov.remove(tipo)
-                tipon = input('Insira o nova nomenclatura para esses eventos: ')
+                tipon = input(
+                    'Insira o nova nomenclatura para esses eventos: ')
                 vprov.append(tipon)
-                ust[nome]= vprov
+                ust[nome] = vprov
                 attevs(nome, tipo, tipon)
                 savedic2(ust)
                 print("=== Tipo de evento Atualizado ===")
@@ -101,6 +106,7 @@ def attipo(nome):
             print("Tipo de evento não foi atualizado!")
     else:
         print("Tipo não encontrado!")
+
 
 def attevs(nome, tipo, tipon):
     for event in usev[nome]:
@@ -116,20 +122,23 @@ def delevents(nome, tipo):
         savedic3(usev)
 
 
-
 def delevs(nome, tipo):
     for event in usev[nome]:
         if event[0] == tipo:
             del event
         savedic3(usev)
 
-#rep
+# rep
+
+
 def savedic3(usev):
     arq2 = open('userevent.dat', 'wb')
     pickle.dump(usev, arq2)
     arq2.close()
 
-#rep
+# rep
+
+
 def lerdic3():
     try:
         arq2 = open("userevent.dat", "rb")
@@ -147,12 +156,12 @@ def deletipo(nome):
     print("===   Função Deletar   ===")
     tipo = input('Insira o usuário que será deletado: ')
     if tipo in ust[nome]:
-            vprov = ust[nome]
-            vprov.remove(tipo)
-            ust[nome]= vprov
-            delevents(nome, tipo)
-            savedic2(ust)
-            print("=== Tipo Deletado ===")
+        vprov = ust[nome]
+        vprov.remove(tipo)
+        ust[nome] = vprov
+        delevents(nome, tipo)
+        savedic2(ust)
+        print("=== Tipo Deletado ===")
     else:
         print("Tipo não encontrado")
 
@@ -161,28 +170,31 @@ ust = lerdic2()
 
 usev = lerdic3()
 
-esc2 = telatipo()
 
-while esc2 != "0":
-    if esc2 == "1":
-
-        selectipos(nome)
-
-    elif esc2 == "2":
-
-        cadtipo(nome)
-
-    elif esc2 == "3":
-
-        attipo(nome)
-
-    elif esc2 == "4":
-
-        deletipo(nome)
-
-    else:
-        print("===   Opção Invalida   ===")
-
-    input("Tecle ENTER para continuar")
+def modulo2(nome):
 
     esc2 = telatipo()
+
+    while esc2 != "0":
+        if esc2 == "1":
+
+            selectipos(nome)
+
+        elif esc2 == "2":
+
+            cadtipo(nome)
+
+        elif esc2 == "3":
+
+            attipo(nome)
+
+        elif esc2 == "4":
+
+            deletipo(nome)
+
+        else:
+            print("===   Opção Invalida   ===")
+
+        input("Tecle ENTER para continuar")
+
+        esc2 = telatipo()

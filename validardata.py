@@ -1,45 +1,53 @@
-dia = int(input("Por favor insira o dia: "))
-mes = int(input("Por favor insira o mês: "))
-ano = int(input("Por favor insira o ano: "))
+def inserirdata():
 
+    valida = False
 
-anoc = ano % 4
-anob = ano % 100
-anod = ano % 400
+    while not(valida):
 
-if mes > 12 or ano == 0 or mes == 0 or dia == 0:
+        dia = int(input("Por favor insira o dia: "))
+        mes = int(input("Por favor insira o mês: "))
+        ano = int(input("Por favor insira o ano: "))
 
-    print("Data invalida")
+        anoc = ano % 4
+        anob = ano % 100
+        anod = ano % 400
 
-else:
-    if mes == 2:
+        if mes > 12 or ano == 0 or mes == 0 or dia == 0:
 
-        if (anoc == 0) and (anob != 0) or (anod != 0):
+            print("Data invalida")
 
-            bi = 0
+        else:
+            if mes == 2:
 
-        elif (anoc == 0) and (anob != 0) or (anod == 0):
+                if (anoc == 0) and (anob != 0) or (anod != 0):
 
-            bi = 1
+                    bi = 0
 
-    if (dia >= 32) and ((mes == 1) or (mes == 3) or (mes == 5) or (mes == 7) or (mes == 8) or (mes == 10) or (mes == 12)):
+                elif (anoc == 0) and (anob != 0) or (anod == 0):
 
-        print("seu dia inserido é invalido pois seu mês so tem 31 dias")
+                    bi = 1
 
-    if (dia >= 31) and ((mes == 4) or (mes == 6) or (mes == 9) or (mes == 11)):
+            elif (dia >= 32) and ((mes == 1) or (mes == 3) or (mes == 5) or (mes == 7) or (mes == 8) or (mes == 10) or (mes == 12)):
 
-        print("seu dia inserido é invalido pois seu mês so tem 30 dias")
+                print("seu dia inserido é invalido pois seu mês so tem 31 dias")
 
-    if (dia == 29) and (mes == 2) and (bi == 0):
+            elif (dia >= 31) and ((mes == 4) or (mes == 6) or (mes == 9) or (mes == 11)):
 
-        print("seu dia inserido é invalido pois seu mês so tem 28 dias")
+                print("seu dia inserido é invalido pois seu mês so tem 30 dias")
 
-    if (dia == 30) and (mes == 2) and (bi == 1):
+            elif (dia == 29) and (mes == 2) and (bi == 0):
 
-        print("seu dia inserido é invalido pois apesar de ser ano bissexto fevereiro so tem 29 dias")
+                print("seu dia inserido é invalido pois seu mês so tem 28 dias")
 
-    else:
+            elif (dia == 30) and (mes == 2) and (bi == 1):
 
-        print("Data valida")
-        datavalida = f"{dia}/{mes}/{ano}"
-        print(datavalida)
+                print("seu dia inserido é invalido pois apesar de ser ano bissexto fevereiro so tem 29 dias")
+
+            else:
+
+                print("Data valida")
+                valida = True
+                datavalida = f"{dia}/{mes}/{ano}"
+                print(datavalida)
+            
+    return datavalida

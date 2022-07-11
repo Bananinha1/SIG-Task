@@ -2,7 +2,7 @@ import calendar
 import os
 import datetime
 import pickle
-from agendatype import *
+import agendatype
 
 
 def savedic1(us):

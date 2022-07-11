@@ -154,7 +154,7 @@ def lerdic3():
 def deletipo(nome):
     os.system("cls")
     print("===   Função Deletar   ===")
-    tipo = input('Insira o usuário que será deletado: ')
+    tipo = input('Insira o tipo a ser deletado: ')
     if tipo in ust[nome]:
         vprov = ust[nome]
         vprov.remove(tipo)

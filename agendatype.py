@@ -55,7 +55,7 @@ def selectipos(nome):
 
     wt = input("Informe qual tipo de agenda deseja visualizar ")
 
-    if ust.get(wt):
+    if wt in ust[nome]:
 
         print("Função para entrar no proximo crudd")
 

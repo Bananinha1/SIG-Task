@@ -1,6 +1,10 @@
+import datetime
+import os
+
+
 def inserirdata():
 
-    #ainda falta colocar pra validar de acordo com a data atual mas do jeito q ta pelo menos valida a data no bruto então ta valendo hehehehe
+    os.system("cls")
 
     valida = False
 
@@ -43,13 +47,30 @@ def inserirdata():
 
             elif (dia == 30) and (mes == 2) and (bi == 1):
 
-                print("seu dia inserido é invalido pois apesar de ser ano bissexto fevereiro so tem 29 dias")
+                print(
+                    "seu dia inserido é invalido pois apesar de ser ano bissexto fevereiro so tem 29 dias")
 
             else:
 
-                print("Data valida")
-                valida = True
-                datavalida = f"{dia}/{mes}/{ano}"
-                print(datavalida)
-            
+                vld = evalido(dia, mes, ano)
+
+                if vld == True:
+
+                    print("Data valida")
+                    datavalida = f"{dia}/{mes}/{ano}"
+                    print(datavalida)
+                    valida = True
+
     return datavalida
+
+
+def evalido(dia, mes, ano):
+    dt = datetime.datetime.now()
+    if ano == dt.year:
+        if mes == dt.month:
+             if dia >= dt.day:
+                return True
+        elif mes > dt.month:
+            return True
+    elif ano > dt.year:
+        return True

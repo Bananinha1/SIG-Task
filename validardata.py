@@ -68,9 +68,31 @@ def evalido(dia, mes, ano):
     dt = datetime.datetime.now()
     if ano == dt.year:
         if mes == dt.month:
-             if dia >= dt.day:
+            if dia >= dt.day:
                 return True
         elif mes > dt.month:
             return True
     elif ano > dt.year:
         return True
+
+
+#a função que corre os proximos sete dias pra ser usado no modulo 3 pras notificações
+
+def proxsemana():
+
+    data = datetime.datetime.today()
+    datat = data.strftime('%d/%m/%Y')
+    lista_datas = []
+    lista_datas.append(datat)
+    for i in range(1, 8):
+
+        data = data + datetime.timedelta(days=1)
+        datat = data.strftime('%d/%m/%Y')
+        lista_datas.append(datat)
+
+    return lista_datas
+
+
+ldatas = proxsemana()
+
+print(ldatas)

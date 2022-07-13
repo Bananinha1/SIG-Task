@@ -1,10 +1,10 @@
 import datetime
 import os
 
+from matplotlib.ft2font import HORIZONTAL
+
 
 def inserirdata():
-
-    os.system("cls")
 
     valida = False
 
@@ -72,11 +72,15 @@ def evalido(dia, mes, ano):
                 return True
         elif mes > dt.month:
             return True
+        else:
+            return False
     elif ano > dt.year:
         return True
+    else:
+        return False
 
 
-#a função que corre os proximos sete dias pra ser usado no modulo 3 pras notificações
+# a função que corre os proximos sete dias pra ser usado no modulo 3 pras notificações
 
 def proxsemana(qt):
 
@@ -84,7 +88,7 @@ def proxsemana(qt):
     datat = data.strftime('%d/%m/%Y')
     lista_datas = []
     lista_datas.append(datat)
-    for i in range(1, qt ):
+    for i in range(1, qt):
 
         data = data + datetime.timedelta(days=1)
         datat = data.strftime('%d/%m/%Y')
@@ -93,6 +97,49 @@ def proxsemana(qt):
     return lista_datas
 
 
-ldatas = proxsemana()
+def inserirhora(datavalida):
 
-print(ldatas)
+    valida = False
+
+    while not(valida):
+
+        print("Insira o horário do seu evento")
+        hora = str(input(" Insira o horario nesse formato(00:00): "))
+        horad = datetime.datetime.strptime(hora, '%H:%M')
+        horas = horad.hour
+        minutos = hord.minute
+
+        if horas > 23 or minutos > 59:
+
+            print("Horario invalido")
+
+        else:
+
+            datah = datetime.datetime.now()
+            datahoje = datah.strftime('%d/%m/%Y')
+
+            if datahoje == datavalida:
+
+                diah = hrvalida(horas, minutos)
+
+                if diah == True:
+                    valida = True
+            else: 
+                valida = True
+
+    return hora
+
+
+def hrvalida(horas, minutos):
+
+    dt = datetime.datetime.now()
+
+    if horas == dt.hour:
+        if minutos > dt.minute:
+            return True
+        else:
+            return False
+    elif horas > dt.hour:
+        return True
+    else:
+        return False

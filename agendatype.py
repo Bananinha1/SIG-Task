@@ -108,14 +108,14 @@ def attipo(nome):
         print("Tipo não encontrado!")
 
 
-def attevs(nome, tipo, tipon):
+def attipo(nome, tipo, tipon):
     for event in usev[nome]:
         if event[0] == tipo:
             event[0] = tipon
         savedic3(usev)
 
 
-def delevents(nome, tipo):
+def deltipo(nome, tipo):
     for event in usev[nome]:
         if event[0] == tipo:
             del event

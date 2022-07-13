@@ -6,13 +6,15 @@ import validardata
 
 #modulo 3 vai dar certo demais
 
-def telaeventos():
+def telaeventos(nome, tipo):
     os.system('cls')
     anomenu = datetime.datetime.now().year
     mesmenu = datetime.datetime.now().month
 
     print(f"O calendário do seu mes {mesmenu} do ano {anomenu} é:")
     print(calendar.month(anomenu, mesmenu))
+    print("Seus eventos mais proximos são:")
+    notifevents(nome, tipo)
     print('========================= ')
     print('SIG-Task - Agenda de eventos')
     print('========================= ')
@@ -41,28 +43,59 @@ def lerdic3():
 
     return usev
 
-def mostevs(nome, tipo):
-    
-    #do jeito q ta vai funcionar mas vai mostrar todos os eventos          
-
-    #criar uma função que salva os proximos 7 dias em uma lista como strings, e usar a função in para verficar se esta na lista o event{o} pq ai consigo limitar essas notificações so aos proximos 7 dias hehehe 
-
-
+def notifevents(nome, tipo):
 
     for event in usev[nome]:
-        if event[0] == tipo:
+        dataref = validardata.proxsemana(4)
+        if (event[0] == tipo) and (event[1] in dataref):
             cont = 1
             while cont < 4:
                  print(event[cont], end=' ')
 
-
-        
+def cadevent(tipo, nome):
+    print("Vamos cadastrar um novo evento")
+    data = validardata.inserirdata()
+    hora = validardata.inserirhora(data)
+    nomeev = input("Insira o nome do evento: ")
+    listaevento = [tipo, data, hora, nomeev]
+    usev[nome].append(listaevento)
+    savedic3(usev)
+    print("Cadastro Efetuado")
 
 
 usev = lerdic3()
 
 
+esc3 = telaeventos()
 
+
+while esc3 != "0":
+
+    if esc3 == "1":
+
+       
+
+    elif esc3 == "2":
+
+      
+
+    elif esc3 == "3":
+
+        
+
+    elif esc3 == "4":
+
+       
+
+    else:
+        print("===   Opção Invalida   ===")
+
+    input("Tecle ENTER para continuar")
+
+    esc3 = 
+
+
+print("Fim")
 
 
 

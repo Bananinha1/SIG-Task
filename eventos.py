@@ -1,10 +1,12 @@
+from asyncio import events
 import calendar
 import os
 import datetime
 import pickle
 import validardata
 
-#modulo 3 vai dar certo demais
+# modulo 3 vai dar certo demais
+
 
 def telaeventos(nome, tipo):
     os.system('cls')
@@ -18,7 +20,7 @@ def telaeventos(nome, tipo):
     print('========================= ')
     print('SIG-Task - Agenda de eventos')
     print('========================= ')
-    print('  1 - Ver eventos futuros  ')
+    print('  1 - Ver eventos marcados  ')
     print('  2 - Cadastrar  Novo Evento   ')
     print('  3 - Modificar evento   ')
     print('  4 - Deletar Evento             ')
@@ -32,6 +34,7 @@ def savedic3(usev):
     pickle.dump(usev, arq2)
     arq2.close()
 
+
 def lerdic3():
     try:
         arq2 = open("userevent.dat", "rb")
@@ -43,6 +46,7 @@ def lerdic3():
 
     return usev
 
+
 def notifevents(nome, tipo):
 
     for event in usev[nome]:
@@ -50,7 +54,8 @@ def notifevents(nome, tipo):
         if (event[0] == tipo) and (event[1] in dataref):
             cont = 1
             while cont < 4:
-                 print(event[cont], end=' ')
+                print(event[cont], end=' ')
+
 
 def cadevent(tipo, nome):
     print("Vamos cadastrar um novo evento")
@@ -63,6 +68,49 @@ def cadevent(tipo, nome):
     print("Cadastro Efetuado")
 
 
+def busnom(nome):
+    nomebus = input('Insira o nome: ')
+    for events in usev[nome]:
+        if nomebus == events[3]:
+            nome = events
+            return (nome)
+
+
+def busdat(data):
+    dat = inserirdata(data)
+    for ev in usev[data]:
+        if dat == ev[1]:
+            date = ev
+            return (date)
+
+
+def listevents(nome, data):
+    decid = input('Buscar os eventos por data ou nome: ')
+    if decid.lower() == 'nome':
+        busnom(nome)
+        print(nome)
+    elif decid.lower() == 'data':
+        busdat(data)
+        print(date)
+    else:
+        decid = input('Classificação não encontrada, insira novamente: ')
+
+
+def deleve(nome, data):
+    decid = input('Buscar os eventos por data ou nome:')
+    if decid.lower() == 'nome':
+        busnom(nome)
+        if nome in usev:
+            del usev[nome]
+    elif decid.lower() == 'data':
+        busnom(data)
+        if date in usev:
+            del usev[date]
+    else:
+        decid = input('Classificação não encontrada, insira novamente: ')
+    savedic3(usev)
+
+
 usev = lerdic3()
 
 
@@ -72,30 +120,22 @@ esc3 = telaeventos()
 while esc3 != "0":
 
     if esc3 == "1":
-
-       
+        listevents()
 
     elif esc3 == "2":
 
-      
+        cadevent()
 
     elif esc3 == "3":
-
-        
-
+        print('b')
     elif esc3 == "4":
-
-       
-
+        print('a')
     else:
         print("===   Opção Invalida   ===")
 
     input("Tecle ENTER para continuar")
 
-    esc3 = 
+    esc3 = 0
 
 
 print("Fim")
-
-
-

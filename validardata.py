@@ -1,8 +1,6 @@
 import datetime
 import os
 
-from matplotlib.ft2font import HORIZONTAL
-
 
 def inserirdata():
 
@@ -107,7 +105,7 @@ def inserirhora(datavalida):
         hora = str(input(" Insira o horario nesse formato(00:00): "))
         horad = datetime.datetime.strptime(hora, '%H:%M')
         horas = horad.hour
-        minutos = hord.minute
+        minutos = horad.minute
 
         if horas > 23 or minutos > 59:
 

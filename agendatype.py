@@ -108,7 +108,7 @@ def attipo(nome):
         print("Tipo não encontrado!")
 
 
-def attipo(nome, tipo, tipon):
+def attevs(nome, tipo, tipon):
     for event in usev[nome]:
         if event[0] == tipo:
             event[0] = tipon

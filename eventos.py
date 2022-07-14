@@ -57,7 +57,7 @@ def notifevents(nome, tipo):
                 print(event[cont], end=' ')
 
 
-def cadevent(tipo, nome):
+def cadevent(nome, tipo):
     print("Vamos cadastrar um novo evento")
     data = validardata.inserirdata()
     hora = validardata.inserirhora(data)
@@ -68,47 +68,68 @@ def cadevent(tipo, nome):
     print("Cadastro Efetuado")
 
 
-def busnom(nome):
+def busnom(nome, tipo):
     nomebus = input('Insira o nome: ')
     for events in usev[nome]:
-        if nomebus == events[3]:
-            nome = events
-            return (nome)
+        if nomebus == events[3] and events[0] == tipo:
+            cont = 1
+            while cont < 4:
+                print(events[cont], end=' ')
+            
+            
+
+def busdat(nome, tipo):
+    dat = validardata.inserirdata()
+    for ev in usev[nome]:
+        if dat == ev[1] and ev[0] == tipo:
+            cont = 1
+            while cont < 4:
+                print(ev[cont], end=' ')
 
 
-def busdat(data):
-    dat = inserirdata(data)
-    for ev in usev[data]:
-        if dat == ev[1]:
-            date = ev
-            return (date)
-
-
-def listevents(nome, data):
+def listevents(nome, tipo):
     decid = input('Buscar os eventos por data ou nome: ')
     if decid.lower() == 'nome':
-        busnom(nome)
-        print(nome)
+        busnom(nome, tipo)
     elif decid.lower() == 'data':
-        busdat(data)
-        print(date)
+        busdat(nome, tipo)
     else:
-        decid = input('Classificação não encontrada, insira novamente: ')
+        print('Classificação não encontrada')
 
-
-def deleve(nome, data):
-    decid = input('Buscar os eventos por data ou nome:')
+def delevents(nome, tipo):
+    decid = input('Buscar os eventos por data ou nome: ')
     if decid.lower() == 'nome':
-        busnom(nome)
-        if nome in usev:
-            del usev[nome]
+
+        nomebus = input('Insira o nome: ')
+        for events in usev[nome]:
+            if nomebus == events[3] and events[0] == tipo:
+                cont = 1
+                while cont < 4:
+                    print(events[cont], end=' ')
+                apg = input("Deseja realmente deletar esse evento?")
+                if apg.lower() == 'sim':
+                    del events
+                    savedic3(usev)
+                else:
+                    print()
+
     elif decid.lower() == 'data':
-        busnom(data)
-        if date in usev:
-            del usev[date]
+        databus = input('Insira o nome: ')
+        for events in usev[nome]:
+            if databus == events[1] and events[0] == tipo:
+                cont = 1
+                while cont < 4:
+                    print(events[cont], end=' ')
+                apg = input("Deseja realmente deletar esse evento?")
+                if apg.lower() == 'sim':
+                    del events
+                    savedic3(usev)
+                    break 
+                else:
+                    print()
+                    break
     else:
-        decid = input('Classificação não encontrada, insira novamente: ')
-    savedic3(usev)
+        print('Classificação não encontrada')
 
 
 usev = lerdic3()

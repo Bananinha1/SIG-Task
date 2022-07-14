@@ -1,29 +1,28 @@
-import calendar
-import os
-import datetime
-import pickle
-import agendatype
+import agendatype #import tipo de agenda
+import calendar #biblioteca de calendário
+import datetime #data atual
+import os #limpeza de tela
+import pickle #carregar dados em dicionário
 
-
-def savedic1(us):
+def savedic1(us): #func de salvar dicionário usuário
     arq = open('users.dat', 'wb')
     pickle.dump(us, arq)
     arq.close()
 
 
-def savedic3(usev):
+def savedic3(usev): #func de salvar dicionário eventos
     arq2 = open('userevent.dat', 'wb')
     pickle.dump(usev, arq2)
     arq2.close()
 
 
-def telamenu():
+def telamenu(): #func de printar interfâce 
     os.system('cls')
     anomenu = datetime.datetime.now().year
     mesmenu = datetime.datetime.now().month
 
     print(f"O calendário do seu mes {mesmenu} do ano {anomenu} é:")
-    print(calendar.month(anomenu, mesmenu))
+    print(calendar.month(anomenu, mesmenu)) #printando calendário do ano
     print('========================= ')
     print('        SIG-Task          ')
     print('========================= ')
@@ -36,7 +35,7 @@ def telamenu():
     return esc1
 
 
-def lerdic1():
+def lerdic1(): #func de ler dicionário
     try:
         arq = open("users.dat", "rb")
         us = pickle.load(arq)
@@ -48,7 +47,7 @@ def lerdic1():
     return us
 
 
-def selectuser():
+def selectuser(): #func de seleção/validação de user
     os.system("cls")
     print("=== Seleção de usuário ===\n")
 
@@ -65,7 +64,7 @@ def selectuser():
         while su != us[wu] and cont < 5:  # valida a senha
             su = input("Senha incorreta, tente novamente: ")
             cont += 1
-        if cont == 5:
+        if cont == 5: 
             print('Número de tentativas de acesso excedidas')
         elif su == us[wu]:
             print('Usuário %s validado' % wu)
@@ -77,7 +76,7 @@ def selectuser():
     print("=== Em Desenvolvimento ===")
 
 
-def caduser():
+def caduser(): #func de cadastro de user
     os.system("cls")
     print("=== Cadastro de usuário ===")
     nome = input('Insira seu nome: ')
@@ -96,7 +95,7 @@ def caduser():
         print("=== Cadastro efetuado ===")
 
 
-def atuser():
+def atuser(): #func de atualização
     os.system("cls")
     print("===  Atualizar usuário   =")
     nome = input('Insira o nome usuário a se mudar: ')
@@ -127,7 +126,7 @@ def atuser():
         print("Nome não encontrado!")
 
 
-def exuser():
+def exuser(): #func de delet user e dados
     os.system("cls")
     print("===   Função Deletar   ===")
     nome = input('Insira o usuário que será deletado: ')
@@ -151,13 +150,13 @@ def exuser():
         print("Usuário não encontrado")
 
 
-def savedic2(ust):
+def savedic2(ust): #func de salvar no dicionário de dados 
     arq1 = open('ustype.dat', 'wb')
     pickle.dump(ust, arq1)
     arq1.close()
 
 
-def lerdic2():
+def lerdic2(): #func de leitura de  tipo
     try:
         arq1 = open("ustype.dat", "rb")
         ust = pickle.load(arq1)
@@ -169,7 +168,7 @@ def lerdic2():
     return ust
 
 
-def lerdic3():
+def lerdic3(): #func de leitura de  evento
     try:
         arq2 = open("userevent.dat", "rb")
         usev = pickle.load(arq2)

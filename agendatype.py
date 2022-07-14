@@ -2,6 +2,7 @@ import calendar
 import os
 import datetime
 import pickle
+import eventos
 
 
 def telatipo():
@@ -56,8 +57,7 @@ def selectipos(nome):
     wt = input("Informe qual tipo de agenda deseja visualizar ")
 
     if wt in ust[nome]:
-
-        print("Função para entrar no proximo crudd")
+        eventos.modulo3(nome, wt)
 
     else:
         print(f'Agenda do tipo: {wt} não encontrada')
@@ -108,7 +108,7 @@ def attipo(nome):
         print("Tipo não encontrado!")
 
 
-def attipo(nome, tipo, tipon):
+def attevs(nome, tipo, tipon):
     for event in usev[nome]:
         if event[0] == tipo:
             event[0] = tipon

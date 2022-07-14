@@ -55,9 +55,12 @@ def notifevents(nome, tipo):
             cont = 1
             while cont < 4:
                 print(event[cont], end=' ')
+                cont += 1
+            print('')
 
 
 def cadevent(nome, tipo):
+    os.system('cls')
     print("Vamos cadastrar um novo evento")
     data = validardata.inserirdata()
     hora = validardata.inserirhora(data)
@@ -75,19 +78,23 @@ def busnom(nome, tipo):
             cont = 1
             while cont < 4:
                 print(events[cont], end=' ')
-            
-            
+                cont += 1
+            print('')
 
-def busdat(nome, tipo):
+
+def busdat(nome, tipo):  # inserir print vazio onde tiver o while cont
     dat = validardata.inserirdata()
     for ev in usev[nome]:
         if dat == ev[1] and ev[0] == tipo:
             cont = 1
             while cont < 4:
                 print(ev[cont], end=' ')
+                cont += 1
+            print('')
 
 
 def listevents(nome, tipo):
+    os.system('cls')
     decid = input('Buscar os eventos por data ou nome: ')
     if decid.lower() == 'nome':
         busnom(nome, tipo)
@@ -96,7 +103,9 @@ def listevents(nome, tipo):
     else:
         print('Classificação não encontrada')
 
+
 def delevents(nome, tipo):
+    os.system('cls')
     decid = input('Buscar os eventos por data ou nome: ')
     if decid.lower() == 'nome':
 
@@ -106,28 +115,164 @@ def delevents(nome, tipo):
                 cont = 1
                 while cont < 4:
                     print(events[cont], end=' ')
+                    cont += 1
+                print()
                 apg = input("Deseja realmente deletar esse evento?")
                 if apg.lower() == 'sim':
-                    del events
+                    usev[nome].remove(events)
                     savedic3(usev)
+                    print('Evento deletado!')
                 else:
                     print()
 
     elif decid.lower() == 'data':
-        databus = input('Insira o nome: ')
+        databus = input('Insira a data: ')
         for events in usev[nome]:
             if databus == events[1] and events[0] == tipo:
                 cont = 1
                 while cont < 4:
                     print(events[cont], end=' ')
+                    cont += 1
                 apg = input("Deseja realmente deletar esse evento?")
                 if apg.lower() == 'sim':
-                    del events
+                    usev[nome].remove(events)
                     savedic3(usev)
-                    break 
-                else:
-                    print()
                     break
+                else:
+                    print('')
+                    break
+    else:
+        print('Classificação não encontrada')
+
+
+def attnome(nome, tipo):
+    nomebus = input('Insira o nome: ')
+    for events in usev[nome]:
+        if nomebus == events[3] and events[0] == tipo:
+            cont = 1
+            while cont < 4:
+                print(events[cont], end=' ')
+                cont += 1
+            print('')
+            att = input(
+                "Deseja atualizar por nome, data, hora ou o evento completo:\n")
+            if att.lower == "nome":
+                novonome = input('Insira a mudança de nome: ')
+                events[3] = novonome
+                savedic3(usev)
+                print('Evento Atualizado')
+                cont = 1
+                while cont < 4:
+                    print(events[cont], end=' ')
+                    cont += 1
+                print('')
+            elif att.lower == "data":
+                novadata = validardata.inserirdata()
+                events[1] = novadata
+                savedic3(usev)
+                print('Evento Atualizado')
+                cont = 1
+                while cont < 4:
+                    print(events[cont], end=' ')
+                    cont += 1
+                print('')
+            elif att.lower == "hora":
+                novahora = input('Insira a mudança de hora: ')
+                events[2] = novahora
+                savedic3(usev)
+                print('Evento Atualizado')
+                cont = 1
+                while cont < 4:
+                    print(events[cont], end=' ')
+                    cont += 1
+                print('')
+            elif att.lower == "completo":
+                novadata = validardata.inserirdata()
+                events[1] = novadata
+                novahora = input('Insira a mudança de hora: ')
+                events[2] = novahora
+                novonome = input('Insira a mudança de nome: ')
+                events[3] = novonome
+                savedic3(usev)
+                print('Evento Atualizado')
+                cont = 1
+                while cont < 4:
+                    print(events[cont], end=' ')
+                    cont += 1
+                print('')
+            else:
+                print('Classificação não encontrada!')
+        else:
+            print('Evento não encontrado')
+
+
+def attdata(nome, tipo):
+    databus = input('Insira a data: ')
+    for events in usev[nome]:
+        if databus == events[1] and events[0] == tipo:
+            cont = 1
+            while cont < 4:
+                print(events[cont], end=' ')
+                cont += 1
+            att = input(
+                "Deseja atualizar por nome, data, hora ou o evento completo:\n")
+            if att.lower == "nome":
+                novonome = input('Insira a mudança de nome: ')
+                events[3] = novonome
+                savedic3(usev)
+                print('Evento Atualizado')
+                cont = 1
+                while cont < 4:
+                    print(events[cont], end=' ')
+                    cont += 1
+                print('')
+            elif att.lower == "data":
+                novadata = validardata.inserirdata()
+                events[1] = novadata
+                savedic3(usev)
+                print('Evento Atualizado')
+                cont = 1
+                while cont < 4:
+                    print(events[cont], end=' ')
+                    cont += 1
+                print('')
+            elif att.lower == "hora":
+                novahora = input('Insira a mudança de hora: ')
+                events[2] = novahora
+                savedic3(usev)
+                print('Evento Atualizado')
+                cont = 1
+                while cont < 4:
+                    print(events[cont], end=' ')
+                    cont += 1
+                print('')
+            elif att.lower == "completo":
+                novadata = validardata.inserirdata()
+                events[1] = novadata
+                novahora = input('Insira a mudança de hora: ')
+                events[2] = novahora
+                novonome = input('Insira a mudança de nome: ')
+                events[3] = novonome
+                savedic3(usev)
+                print('Evento Atualizado')
+                cont = 1
+                while cont < 4:
+                    print(events[cont], end=' ')
+                    cont += 1
+                print('')
+            else:
+                print('Classificação não encontrada!')
+        else:
+            print('Evento não encontrado')
+
+
+def attevents(nome, tipo):
+    os.system('cls')
+    decid = input('Buscar os eventos por data ou nome: ')
+    if decid.lower() == 'nome':
+        attnome(nome, tipo)
+    elif decid.lower() == 'data':
+        attdata(nome, tipo)
     else:
         print('Classificação não encontrada')
 
@@ -135,28 +280,29 @@ def delevents(nome, tipo):
 usev = lerdic3()
 
 
-esc3 = telaeventos()
+def modulo3(nome, tipo):
 
+    esc3 = telaeventos(nome, tipo)
 
-while esc3 != "0":
+    while esc3 != "0":
 
-    if esc3 == "1":
-        listevents()
+        if esc3 == "1":
+            listevents(nome, tipo)
 
-    elif esc3 == "2":
+        elif esc3 == "2":
 
-        cadevent()
+            cadevent(nome, tipo)
 
-    elif esc3 == "3":
-        print('b')
-    elif esc3 == "4":
-        print('a')
-    else:
-        print("===   Opção Invalida   ===")
+        elif esc3 == "3":
+            attevents(nome, tipo)
+        elif esc3 == "4":
+            delevents(nome, tipo)
+        else:
+            print("===   Opção Invalida   ===")
 
-    input("Tecle ENTER para continuar")
+        input("Tecle ENTER para continuar")
 
-    esc3 = 0
+        esc3 = telaeventos(nome, tipo)
 
 
 print("Fim")

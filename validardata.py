@@ -55,7 +55,7 @@ def inserirdata():
                 if vld == True:
 
                     print("Data valida")
-                    datavalida = f"{dia}/{mes}/{ano}"
+                    datavalida = f"{dia:0>2}/{mes:0>2}/{ano}"
                     print(datavalida)
                     valida = True
 

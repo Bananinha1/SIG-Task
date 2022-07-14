@@ -98,7 +98,7 @@ def caduser(): #func de cadastro de user
 def atuser(): #func de atualização
     os.system("cls")
     print("===  Atualizar usuário   =")
-    nome = input('Insira o nome usuário a se mudar: ')
+    nome = input('Insira o nome usuário a se mudar: ') #inserir validação de senha de user
     if nome in us:
         crtz = input('Você tem certeza que deseja mudar? ')
         if crtz.lower() in "sim":

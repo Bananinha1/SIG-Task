@@ -46,8 +46,9 @@ def lerdic2():
     return ust
 
 
-def selectipos(nome):
+def selectipos(nome, ust, usev):
     os.system("cls")
+    print(usev)
     print("=== Seleção de tipo de Agenda ===\n")
 
     for tipos in ust[nome]:
@@ -57,7 +58,7 @@ def selectipos(nome):
     wt = input("Informe qual tipo de agenda deseja visualizar ")
 
     if wt in ust[nome]:
-        eventos.modulo3(nome, wt)
+        eventos.modulo3(nome, wt, usev)
 
     else:
         print(f'Agenda do tipo: {wt} não encontrada')
@@ -65,7 +66,7 @@ def selectipos(nome):
     print("=== Em Desenvolvimento ===")
 
 
-def cadtipo(nome):
+def cadtipo(nome, ust):
     os.system("cls")
     print("=== Cadastro de novo tipo de agenda ===")
     tipo = input('Insira o nome do tipo de agenda: ')
@@ -82,7 +83,7 @@ def cadtipo(nome):
         print("=== Cadastro efetuado ===")
 
 
-def attipo(nome):
+def attipo(nome, ust, usev):
     os.system("cls")
     print("===  Atualizar Tipos de Evento   =")
     tipo = input('Insira o tipo de evento a se mudar: ')
@@ -97,8 +98,9 @@ def attipo(nome):
                     'Insira o nova nomenclatura para esses eventos: ')
                 vprov.append(tipon)
                 ust[nome] = vprov
-                attevs(nome, tipo, tipon)
+                attevs(nome, tipo, tipon, usev)
                 savedic2(ust)
+                # savedic3(usev)
                 print("=== Tipo de evento Atualizado ===")
 
         else:
@@ -108,21 +110,21 @@ def attipo(nome):
         print("Tipo não encontrado!")
 
 
-def attevs(nome, tipo, tipon):
+def attevs(nome, tipo, tipon, usev):
     for event in usev[nome]:
         if event[0] == tipo:
             event[0] = tipon
         savedic3(usev)
 
 
-def deltipo(nome, tipo):
-    for event in usev[nome]:
-        if event[0] == tipo:
-            del event
-        savedic3(usev)
+# def deltipo(nome, tipo, usev):
+#     for event in usev[nome]:
+#         if event[0] == tipo:
+#             del event
+#         savedic3(usev)
 
 
-def delevs(nome, tipo):
+def delevs(nome, tipo, usev):
     for event in usev[nome]:
         if event[0] == tipo:
             del event
@@ -151,7 +153,7 @@ def lerdic3():
     return usev
 
 
-def deletipo(nome):
+def deletipo(nome, ust, usev):
     os.system("cls")
     print("===   Função Deletar   ===")
     tipo = input('Insira o tipo a ser deletado: ')
@@ -159,38 +161,38 @@ def deletipo(nome):
         vprov = ust[nome]
         vprov.remove(tipo)
         ust[nome] = vprov
-        delevents(nome, tipo)
+        delevs(nome, tipo, usev)
         savedic2(ust)
         print("=== Tipo Deletado ===")
     else:
         print("Tipo não encontrado")
 
 
-ust = lerdic2()
+# ust = lerdic2()
 
-usev = lerdic3()
+# usev = lerdic3()
 
 
-def modulo2(nome):
+def modulo2(nome, ust, usev):
 
     esc2 = telatipo()
 
     while esc2 != "0":
         if esc2 == "1":
 
-            selectipos(nome)
+            selectipos(nome, ust, usev)
 
         elif esc2 == "2":
 
-            cadtipo(nome)
+            cadtipo(nome, ust)
 
         elif esc2 == "3":
 
-            attipo(nome)
+            attipo(nome, ust, usev)
 
         elif esc2 == "4":
 
-            deletipo(nome)
+            deletipo(nome, ust, usev)
 
         else:
             print("===   Opção Invalida   ===")

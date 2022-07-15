@@ -68,7 +68,7 @@ def selectuser(): #func de seleção/validação de user
             print('Número de tentativas de acesso excedidas')
         elif su == us[wu]:
             print('Usuário %s validado' % wu)
-            agendatype.modulo2(wu)
+            agendatype.modulo2(wu, ust, usev)
 
     else:
         print(f'Usuário {wu} não encontrado')

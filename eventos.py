@@ -8,7 +8,7 @@ import validardata
 # modulo 3 vai dar certo demais
 
 
-def telaeventos(nome, tipo):
+def telaeventos(nome, tipo, usev):
     os.system('cls')
     anomenu = datetime.datetime.now().year
     mesmenu = datetime.datetime.now().month
@@ -16,7 +16,7 @@ def telaeventos(nome, tipo):
     print(f"O calendário do seu mes {mesmenu} do ano {anomenu} é:")
     print(calendar.month(anomenu, mesmenu))
     print("Seus eventos mais proximos são:")
-    notifevents(nome, tipo)
+    notifevents(nome, tipo, usev)
     print('========================= ')
     print('SIG-Task - Agenda de eventos')
     print('========================= ')
@@ -47,7 +47,7 @@ def lerdic3():
     return usev
 
 
-def notifevents(nome, tipo):
+def notifevents(nome, tipo, usev):
 
     for event in usev[nome]:
         dataref = validardata.proxsemana(4)
@@ -59,7 +59,7 @@ def notifevents(nome, tipo):
             print('')
 
 
-def cadevent(nome, tipo):
+def cadevent(nome, tipo, usev):
     os.system('cls')
     print("Vamos cadastrar um novo evento")
     data = validardata.inserirdata()
@@ -71,7 +71,7 @@ def cadevent(nome, tipo):
     print("Cadastro Efetuado")
 
 
-def busnom(nome, tipo):
+def busnom(nome, tipo, usev):
     nomebus = input('Insira o nome: ')
     for events in usev[nome]:
         if nomebus == events[3] and events[0] == tipo:
@@ -82,7 +82,7 @@ def busnom(nome, tipo):
             print('')
 
 
-def busdat(nome, tipo):  # inserir print vazio onde tiver o while cont
+def busdat(nome, tipo, usev):  # inserir print vazio onde tiver o while cont
     dat = validardata.inserirdata()
     for ev in usev[nome]:
         if dat == ev[1] and ev[0] == tipo:
@@ -93,18 +93,18 @@ def busdat(nome, tipo):  # inserir print vazio onde tiver o while cont
             print('')
 
 
-def listevents(nome, tipo):
+def listevents(nome, tipo, usev):
     os.system('cls')
     decid = input('Buscar os eventos por data ou nome: ')
     if decid.lower() == 'nome':
-        busnom(nome, tipo)
+        busnom(nome, tipo, usev)
     elif decid.lower() == 'data':
-        busdat(nome, tipo)
+        busdat(nome, tipo, usev)
     else:
         print('Classificação não encontrada')
 
 
-def delevents(nome, tipo):
+def delevents(nome, tipo, usev):
     os.system('cls')
     decid = input('Buscar os eventos por data ou nome: ')
     if decid.lower() == 'nome':
@@ -145,7 +145,7 @@ def delevents(nome, tipo):
         print('Classificação não encontrada')
 
 
-def attnome(nome, tipo):
+def attnome(nome, tipo, usev):
     nomebus = input('Insira o nome: ')
     for events in usev[nome]:
         if nomebus == events[3] and events[0] == tipo:
@@ -206,7 +206,7 @@ def attnome(nome, tipo):
             print('Evento não encontrado')
 
 
-def attdata(nome, tipo):
+def attdata(nome, tipo, usev):
     databus = input('Insira a data: ')
     for events in usev[nome]:
         if databus == events[1] and events[0] == tipo:
@@ -266,43 +266,43 @@ def attdata(nome, tipo):
             print('Evento não encontrado')
 
 
-def attevents(nome, tipo):
+def attevents(nome, tipo, usev):
     os.system('cls')
     decid = input('Buscar os eventos por data ou nome: ')
     if decid.lower() == 'nome':
-        attnome(nome, tipo)
+        attnome(nome, tipo, usev)
     elif decid.lower() == 'data':
-        attdata(nome, tipo)
+        attdata(nome, tipo, usev)
     else:
         print('Classificação não encontrada')
 
 
-usev = lerdic3()
+# usev = lerdic3()
 
 
-def modulo3(nome, tipo):
+def modulo3(nome, tipo, usev):
 
-    esc3 = telaeventos(nome, tipo)
+    esc3 = telaeventos(nome, tipo, usev)
 
     while esc3 != "0":
 
         if esc3 == "1":
-            listevents(nome, tipo)
+            listevents(nome, tipo, usev)
 
         elif esc3 == "2":
 
-            cadevent(nome, tipo)
+            cadevent(nome, tipo, usev)
 
         elif esc3 == "3":
-            attevents(nome, tipo)
+            attevents(nome, tipo, usev)
         elif esc3 == "4":
-            delevents(nome, tipo)
+            delevents(nome, tipo, usev)
         else:
             print("===   Opção Invalida   ===")
 
         input("Tecle ENTER para continuar")
 
-        esc3 = telaeventos(nome, tipo)
+        esc3 = telaeventos(nome, tipo, usev)
 
 
 print("Fim")

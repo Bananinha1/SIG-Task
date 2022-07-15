@@ -48,7 +48,6 @@ def lerdic2():
 
 def selectipos(nome, ust, usev):
     os.system("cls")
-    print(usev)
     print("=== Seleção de tipo de Agenda ===\n")
 
     for tipos in ust[nome]:
@@ -92,16 +91,21 @@ def attipo(nome, ust, usev):
         crtz = input('Você tem certeza que deseja mudar? ')
         if crtz.lower() in "sim":
             if tipo in ust[nome]:
-                vprov = ust[nome]
-                vprov.remove(tipo)
-                tipon = input(
-                    'Insira o nova nomenclatura para esses eventos: ')
-                vprov.append(tipon)
-                ust[nome] = vprov
-                attevs(nome, tipo, tipon, usev)
-                savedic2(ust)
-                # savedic3(usev)
-                print("=== Tipo de evento Atualizado ===")
+                
+                tipon = input('Insira o nova nomenclatura para esses eventos: ')
+                if tipon in ust[nome]:
+                    print("Nomenclatura já existente")
+                    print("Tipo de evento não foi atualizado!")
+                else:
+
+                    vprov = ust[nome]
+                    vprov.remove(tipo)
+                    vprov.append(tipon)
+                    ust[nome] = vprov
+                    attevs(nome, tipo, tipon, usev)
+                    savedic2(ust)
+                    # savedic3(usev)
+                    print("=== Tipo de evento Atualizado ===")
 
         else:
 
@@ -116,12 +120,6 @@ def attevs(nome, tipo, tipon, usev):
             event[0] = tipon
         savedic3(usev)
 
-
-# def deltipo(nome, tipo, usev):
-#     for event in usev[nome]:
-#         if event[0] == tipo:
-#             del event
-#         savedic3(usev)
 
 
 def delevs(nome, tipo, usev):

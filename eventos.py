@@ -7,6 +7,13 @@ import validardata
 
 # modulo 3 vai dar certo demais
 
+#na função de atualizar, verificar se a nova atualização tem um nome de algum evento ja existente
+
+#na função de cadastro verificar se o nome ja existe tambem
+
+#Na função de deletar: criar variavel booleana e gerar um while, ai quando printar o evento, pergunta se é esse o evento da pessoa, se for ai entre no if da linha 139 senão continua o for e vai mostrando todos os eventos daquela data
+
+
 
 def telaeventos(nome, tipo, usev):
     os.system('cls')
@@ -126,6 +133,9 @@ def delevents(nome, tipo, usev):
                     print()
 
     elif decid.lower() == 'data':
+
+        #criar variavel booleana e gerar um while, ai quando printar o evento, pergunta se é esse o evento da pessoa, se for ai entre no if da linha 139 senão continua o for e vai mostrando todos os eventos daquela data
+
         databus = input('Insira a data: ')
         for events in usev[nome]:
             if databus == events[1] and events[0] == tipo:
@@ -133,13 +143,14 @@ def delevents(nome, tipo, usev):
                 while cont < 4:
                     print(events[cont], end=' ')
                     cont += 1
+                print()
                 apg = input("Deseja realmente deletar esse evento?")
                 if apg.lower() == 'sim':
                     usev[nome].remove(events)
                     savedic3(usev)
                     break
                 else:
-                    print('')
+                    print()
                     break
     else:
         print('Classificação não encontrada')

@@ -15,7 +15,7 @@ import validardata
 
 
 
-def telaeventos(nome, tipo, usev):
+def telaeventos(nome, tipo, usev): #interface do terceiro modulo
     os.system('cls')
     anomenu = datetime.datetime.now().year
     mesmenu = datetime.datetime.now().month
@@ -36,13 +36,13 @@ def telaeventos(nome, tipo, usev):
     return esc3
 
 
-def savedic3(usev):
+def savedic3(usev): #salvando em dicionario
     arq2 = open('userevent.dat', 'wb')
     pickle.dump(usev, arq2)
     arq2.close()
 
 
-def lerdic3():
+def lerdic3(): #lendo dicionario
     try:
         arq2 = open("userevent.dat", "rb")
         usev = pickle.load(arq2)
@@ -54,7 +54,7 @@ def lerdic3():
     return usev
 
 
-def notifevents(nome, tipo, usev):
+def notifevents(nome, tipo, usev): #função de notificação de eventos
 
     for event in usev[nome]:
         dataref = validardata.proxsemana(4)
@@ -66,7 +66,7 @@ def notifevents(nome, tipo, usev):
             print('')
 
 
-def cadevent(nome, tipo, usev):
+def cadevent(nome, tipo, usev): #cadastro de eventos
     os.system('cls')
     print("Vamos cadastrar um novo evento")
     data = validardata.inserirdata()
@@ -78,7 +78,7 @@ def cadevent(nome, tipo, usev):
     print("Cadastro Efetuado")
 
 
-def busnom(nome, tipo, usev):
+def busnom(nome, tipo, usev): #função de buscar por nome
     nomebus = input('Insira o nome: ')
     for events in usev[nome]:
         if nomebus == events[3] and events[0] == tipo:
@@ -89,7 +89,7 @@ def busnom(nome, tipo, usev):
             print('')
 
 
-def busdat(nome, tipo, usev):  # inserir print vazio onde tiver o while cont
+def busdat(nome, tipo, usev):  #inserir print vazio onde tiver o while cont
     dat = validardata.inserirdata()
     for ev in usev[nome]:
         if dat == ev[1] and ev[0] == tipo:
@@ -100,7 +100,7 @@ def busdat(nome, tipo, usev):  # inserir print vazio onde tiver o while cont
             print('')
 
 
-def listevents(nome, tipo, usev):
+def listevents(nome, tipo, usev): #func de listagem de eventos
     os.system('cls')
     decid = input('Buscar os eventos por data ou nome: ')
     if decid.lower() == 'nome':
@@ -111,7 +111,7 @@ def listevents(nome, tipo, usev):
         print('Classificação não encontrada')
 
 
-def delevents(nome, tipo, usev):
+def delevents(nome, tipo, usev): #func de deletar eventos
     os.system('cls')
     decid = input('Buscar os eventos por data ou nome: ')
     if decid.lower() == 'nome':
@@ -156,7 +156,7 @@ def delevents(nome, tipo, usev):
         print('Classificação não encontrada')
 
 
-def attnome(nome, tipo, usev):
+def attnome(nome, tipo, usev): #func de atualizar nome
     nomebus = input('Insira o nome: ')
     for events in usev[nome]:
         if nomebus == events[3] and events[0] == tipo:
@@ -217,7 +217,7 @@ def attnome(nome, tipo, usev):
             print('Evento não encontrado')
 
 
-def attdata(nome, tipo, usev):
+def attdata(nome, tipo, usev): #func de atualizar data
     databus = input('Insira a data: ')
     for events in usev[nome]:
         if databus == events[1] and events[0] == tipo:
@@ -277,7 +277,7 @@ def attdata(nome, tipo, usev):
             print('Evento não encontrado')
 
 
-def attevents(nome, tipo, usev):
+def attevents(nome, tipo, usev): #func de atualizar eventos
     os.system('cls')
     decid = input('Buscar os eventos por data ou nome: ')
     if decid.lower() == 'nome':
@@ -291,7 +291,7 @@ def attevents(nome, tipo, usev):
 # usev = lerdic3()
 
 
-def modulo3(nome, tipo, usev):
+def modulo3(nome, tipo, usev): #módulo 3    
 
     esc3 = telaeventos(nome, tipo, usev)
 

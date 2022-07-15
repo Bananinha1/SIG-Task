@@ -16,7 +16,7 @@ def savedic3(usev): #func de salvar dicionário eventos
     arq2.close()
 
 
-def telamenu(): #func de printar interfâce 
+def telamenu(): #func de printar interface
     os.system('cls')
     anomenu = datetime.datetime.now().year
     mesmenu = datetime.datetime.now().month

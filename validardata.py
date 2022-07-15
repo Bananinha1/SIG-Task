@@ -2,7 +2,7 @@ import datetime
 import os
 
 
-def inserirdata():
+def inserirdata(): #função de inserir data
 
     valida = False
 
@@ -62,7 +62,7 @@ def inserirdata():
     return datavalida
 
 
-def evalido(dia, mes, ano):
+def evalido(dia, mes, ano): #função de validação de datas
     dt = datetime.datetime.now()
     if ano == dt.year:
         if mes == dt.month:
@@ -80,7 +80,7 @@ def evalido(dia, mes, ano):
 
 # a função que corre os proximos sete dias pra ser usado no modulo 3 pras notificações
 
-def proxsemana(qt):
+def proxsemana(qt): #função de listagem de eventos
 
     data = datetime.datetime.today()
     datat = data.strftime('%d/%m/%Y')
@@ -95,7 +95,7 @@ def proxsemana(qt):
     return lista_datas
 
 
-def inserirhora(datavalida):
+def inserirhora(datavalida): #função de inserir horas
 
     valida = False
 
@@ -128,7 +128,7 @@ def inserirhora(datavalida):
     return hora
 
 
-def hrvalida(horas, minutos):
+def hrvalida(horas, minutos): #validação de horas
 
     dt = datetime.datetime.now()
 

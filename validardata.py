@@ -1,8 +1,9 @@
 import datetime
 import os
 
+#Adicionar verificação e modificação de string de hora
 
-def inserirdata(): #função de inserir data
+def inserirdata():  # função de inserir data
 
     valida = False
 
@@ -62,7 +63,7 @@ def inserirdata(): #função de inserir data
     return datavalida
 
 
-def evalido(dia, mes, ano): #função de validação de datas
+def evalido(dia, mes, ano):  # função de validação de datas
     dt = datetime.datetime.now()
     if ano == dt.year:
         if mes == dt.month:
@@ -80,7 +81,7 @@ def evalido(dia, mes, ano): #função de validação de datas
 
 # a função que corre os proximos sete dias pra ser usado no modulo 3 pras notificações
 
-def proxsemana(qt): #função de listagem de eventos
+def proxsemana(qt):  # função de listagem de eventos
 
     data = datetime.datetime.today()
     datat = data.strftime('%d/%m/%Y')
@@ -95,7 +96,7 @@ def proxsemana(qt): #função de listagem de eventos
     return lista_datas
 
 
-def inserirhora(datavalida): #função de inserir horas
+def inserirhora(datavalida):  # função de inserir horas
 
     valida = False
 
@@ -122,13 +123,13 @@ def inserirhora(datavalida): #função de inserir horas
 
                 if diah == True:
                     valida = True
-            else: 
+            else:
                 valida = True
 
     return hora
 
 
-def hrvalida(horas, minutos): #validação de horas
+def hrvalida(horas, minutos):  # validação de horas
 
     dt = datetime.datetime.now()
 

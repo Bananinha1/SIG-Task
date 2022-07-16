@@ -5,7 +5,7 @@ import pickle
 import eventos
 
 
-def telatipo():
+def telatipo(): #tela do segundo módulo
     os.system('cls')
     anomenu = datetime.datetime.now().year
     mesmenu = datetime.datetime.now().month
@@ -26,7 +26,7 @@ def telatipo():
 # rep
 
 
-def savedic2(ust):
+def savedic2(ust): #salvando dicionário de tipo 
     arq1 = open('ustype.dat', 'wb')
     pickle.dump(ust, arq1)
     arq1.close()
@@ -34,7 +34,7 @@ def savedic2(ust):
 # rep
 
 
-def lerdic2():
+def lerdic2(): #lendo dicionário
     try:
         arq1 = open("ustype.dat", "rb")
         ust = pickle.load(arq1)
@@ -46,7 +46,7 @@ def lerdic2():
     return ust
 
 
-def selectipos(nome, ust, usev):
+def selectipos(nome, ust, usev): #função para selecionar tipo de agenda
     os.system("cls")
     print("=== Seleção de tipo de Agenda ===\n")
 
@@ -65,7 +65,7 @@ def selectipos(nome, ust, usev):
     print("=== Em Desenvolvimento ===")
 
 
-def cadtipo(nome, ust):
+def cadtipo(nome, ust): #função de cadastramento de tipo de agenda
     os.system("cls")
     print("=== Cadastro de novo tipo de agenda ===")
     tipo = input('Insira o nome do tipo de agenda: ')
@@ -82,9 +82,9 @@ def cadtipo(nome, ust):
         print("=== Cadastro efetuado ===")
 
 
-def attipo(nome, ust, usev):
+def attipo(nome, ust, usev): #função de atualizar tipo de agenda
     os.system("cls")
-    print("===  Atualizar Tipos de Evento   =")
+    print("===  Atualizar Tipos de Agenda   =")
     tipo = input('Insira o tipo de evento a se mudar: ')
 
     if tipo in ust[nome]:
@@ -114,7 +114,7 @@ def attipo(nome, ust, usev):
         print("Tipo não encontrado!")
 
 
-def attevs(nome, tipo, tipon, usev):
+def attevs(nome, tipo, tipon, usev): #função de atualizar
     for event in usev[nome]:
         if event[0] == tipo:
             event[0] = tipon
@@ -122,7 +122,7 @@ def attevs(nome, tipo, tipon, usev):
 
 
 
-def delevs(nome, tipo, usev):
+def delevs(nome, tipo, usev): #função de deletar
     for event in usev[nome]:
         if event[0] == tipo:
             del event
@@ -131,7 +131,7 @@ def delevs(nome, tipo, usev):
 # rep
 
 
-def savedic3(usev):
+def savedic3(usev): #salvando no dicionario de eventos
     arq2 = open('userevent.dat', 'wb')
     pickle.dump(usev, arq2)
     arq2.close()
@@ -139,7 +139,7 @@ def savedic3(usev):
 # rep
 
 
-def lerdic3():
+def lerdic3(): #lendo dicionario
     try:
         arq2 = open("userevent.dat", "rb")
         usev = pickle.load(arq2)
@@ -151,7 +151,7 @@ def lerdic3():
     return usev
 
 
-def deletipo(nome, ust, usev):
+def deletipo(nome, ust, usev): #deletando tipo de agenda
     os.system("cls")
     print("===   Função Deletar   ===")
     tipo = input('Insira o tipo a ser deletado: ')
@@ -171,7 +171,7 @@ def deletipo(nome, ust, usev):
 # usev = lerdic3()
 
 
-def modulo2(nome, ust, usev):
+def modulo2(nome, ust, usev): #módulo 2 em geral
 
     esc2 = telatipo()
 

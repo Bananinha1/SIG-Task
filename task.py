@@ -66,7 +66,7 @@ def selectuser():  # func de seleção/validação de user
             su = input("Senha incorreta, tente novamente: ")
             cont += 1
         if cont == 5:
-            print('Número de tentativas de acesso excedidas')
+            print('Número de tentativas de acesso excedidas!')
         elif su == us[wu]:
             print('Usuário %s validado' % wu)
             agendatype.modulo2(wu, ust, usev)
@@ -74,7 +74,6 @@ def selectuser():  # func de seleção/validação de user
     else:
         print(f'Usuário {wu} não encontrado')
 
-    print("=== Em Desenvolvimento ===")
 
 
 def caduser():  # func de cadastro de user

@@ -5,11 +5,7 @@ import pickle
 from typing import Dict, List, NoReturn
 import validardata
 
-# modulo 3 vai dar certo demais
-
 # na função de atualizar, verificar se a nova atualização tem um nome de algum evento ja existente
-
-# Na função de deletar: criar variavel booleana e gerar um while, ai quando printar o evento, pergunta se é esse o evento da pessoa, se for ai entre no if da linha 139 senão continua o for e vai mostrando todos os eventos daquela data
 
 
 def telaeventos(nome, tipo, usev):  # interface do terceiro modulo
@@ -69,12 +65,11 @@ def cadevent(nome, tipo, usev):  # cadastro de eventos
     data = validardata.inserirdata()
     hora = validardata.inserirhora(data)
     nomeev = input("Insira o nome do evento: ")
-    event_list = []
+    listaeve = []
     for evento in usev[nome]:
-        event_list.append(evento[-1])
-    print(event_list)
+        listaeve.append(evento[-1])
     while True:
-        if nomeev in event_list:
+        if nomeev in listaeve:
             nomeev = input(
                 "Nome já cadastro, insira novamente um nome para evento: ")
         else:
@@ -97,18 +92,12 @@ def busnom(nome, tipo, usev):  # função de buscar por nome
 
 
 # inserir print vazio onde tiver o while cont
-def busdat(nome: str, tipo: str, usev: Dict[str, List[str]]) -> NoReturn:
-    """Buscar por data
-
-    Args:
-        nome: nome de user
-        tipo: tipo de evento
-        usev: dicionario com eventos
-    """
+def busdat(nome, tipo, usev):
     dat = validardata.inserirdata()
     for ev in usev[nome]:
         if dat == ev[1] and ev[0] == tipo:
             cont = 1
+            print('Este é o seu evento:')
             while cont < 4:
                 print(ev[cont], end=' ')
                 cont += 1
@@ -153,9 +142,9 @@ def delevents(nome, tipo, usev):  # func de deletar eventos
 
         # criar variavel booleana e gerar um while, ai quando printar o evento, pergunta se é esse o evento da pessoa, se for ai entre no if da linha 139 senão continua o for e vai mostrando todos os eventos daquela data
 
-        databus = input('Insira a data: ')
+        databus = validardata.inserirdata()
         qs = False
-        while not qs:
+        while qs == False:
             for events in usev[nome]:
                 if databus == events[1] and events[0] == tipo:
                     cont = 1
@@ -187,11 +176,17 @@ def attnome(nome, tipo, usev):  # func de atualizar nome
             print('')
             att = input(
                 "Deseja atualizar por nome, data, hora ou o evento completo:\n")
-            if att.lower == "nome":
+            if att.lower() == "nome":
                 novonome = input('Insira a mudança de nome: ')
-                if novonome in usev:
-                    novonome = input(
-                        "Nome já cadastro, insira novo nome para evento: ")
+                listaeve = []
+                for evento in usev[nome]:
+                    listaeve.append(evento[-1])
+                while True:
+                    if novonome in listaeve:
+                        novonome = input(
+                            "Nome já cadastro, insira novamente um nome para evento: ")
+                    else:
+                        break
                 events[3] = novonome
                 savedic3(usev)
                 print('Evento Atualizado')
@@ -200,7 +195,7 @@ def attnome(nome, tipo, usev):  # func de atualizar nome
                     print(events[cont], end=' ')
                     cont += 1
                 print('')
-            elif att.lower == "data":
+            elif att.lower() == "data":
                 novadata = validardata.inserirdata()
                 events[1] = novadata
                 savedic3(usev)
@@ -210,7 +205,7 @@ def attnome(nome, tipo, usev):  # func de atualizar nome
                     print(events[cont], end=' ')
                     cont += 1
                 print('')
-            elif att.lower == "hora":
+            elif att.lower() == "hora":
                 novahora = input('Insira a mudança de hora: ')
                 events[2] = novahora
                 savedic3(usev)
@@ -226,9 +221,15 @@ def attnome(nome, tipo, usev):  # func de atualizar nome
                 novahora = input('Insira a mudança de hora: ')
                 events[2] = novahora
                 novonome = input('Insira a mudança de nome: ')
-                if novonome in usev:
-                    novonome = input(
-                        "Nome já cadastro, insira novo nome para evento: ")
+                listaeve = []
+                for evento in usev[nome]:
+                    listaeve.append(evento[-1])
+                while True:
+                    if novonome in listaeve:
+                        novonome = input(
+                            "Nome já cadastro, insira novamente um nome para evento: ")
+                    else:
+                        break
                 events[3] = novonome
                 savedic3(usev)
                 print('Evento Atualizado')
@@ -253,8 +254,17 @@ def attdata(nome, tipo, usev):  # func de atualizar data
                 cont += 1
             att = input(
                 "Deseja atualizar por nome, data, hora ou o evento completo:\n")
-            if att.lower == "nome":
+            if att.lower() == "nome":
                 novonome = input('Insira a mudança de nome: ')
+                listaeve = []
+                for evento in usev[nome]:
+                    listaeve.append(evento[-1])
+                while True:
+                    if novonome in listaeve:
+                        novonome = input(
+                            "Nome já cadastro, insira novamente um nome para evento: ")
+                    else:
+                        break
                 events[3] = novonome
                 savedic3(usev)
                 print('Evento Atualizado')
@@ -263,7 +273,7 @@ def attdata(nome, tipo, usev):  # func de atualizar data
                     print(events[cont], end=' ')
                     cont += 1
                 print('')
-            elif att.lower == "data":
+            elif att.lower() == "data":
                 novadata = validardata.inserirdata()
                 events[1] = novadata
                 savedic3(usev)
@@ -273,7 +283,7 @@ def attdata(nome, tipo, usev):  # func de atualizar data
                     print(events[cont], end=' ')
                     cont += 1
                 print('')
-            elif att.lower == "hora":
+            elif att.lower() == "hora":
                 novahora = input('Insira a mudança de hora: ')
                 events[2] = novahora
                 savedic3(usev)
@@ -283,12 +293,21 @@ def attdata(nome, tipo, usev):  # func de atualizar data
                     print(events[cont], end=' ')
                     cont += 1
                 print('')
-            elif att.lower == "completo":
+            elif att.lower() == "completo":
                 novadata = validardata.inserirdata()
                 events[1] = novadata
                 novahora = input('Insira a mudança de hora: ')
                 events[2] = novahora
                 novonome = input('Insira a mudança de nome: ')
+                listaeve = []
+                for evento in usev[nome]:
+                    listaeve.append(evento[-1])
+                while True:
+                    if novonome in listaeve:
+                        novonome = input(
+                            "Nome já cadastro, insira novamente um nome para evento: ")
+                    else:
+                        break
                 events[3] = novonome
                 savedic3(usev)
                 print('Evento Atualizado')

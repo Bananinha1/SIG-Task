@@ -1,28 +1,29 @@
-import agendatype #import tipo de agenda
-import calendar #biblioteca de calendário
-import datetime #data atual
-import os #limpeza de tela
-import pickle #carregar dados em dicionário
+import agendatype  # import tipo de agenda
+import calendar  # biblioteca de calendário
+import datetime  # data atual
+import os  # limpeza de tela
+import pickle  # carregar dados em dicionário
 
-def savedic1(us): #func de salvar dicionário usuário
+
+def savedic1(us):  # func de salvar dicionário usuário
     arq = open('users.dat', 'wb')
     pickle.dump(us, arq)
     arq.close()
 
 
-def savedic3(usev): #func de salvar dicionário eventos
+def savedic3(usev):  # func de salvar dicionário eventos
     arq2 = open('userevent.dat', 'wb')
     pickle.dump(usev, arq2)
     arq2.close()
 
 
-def telamenu(): #func de printar interface
+def telamenu():  # func de printar interface
     os.system('cls')
     anomenu = datetime.datetime.now().year
     mesmenu = datetime.datetime.now().month
 
     print(f"O calendário do seu mes {mesmenu} do ano {anomenu} é:")
-    print(calendar.month(anomenu, mesmenu)) #printando calendário do ano
+    print(calendar.month(anomenu, mesmenu))  # printando calendário do ano
     print('========================= ')
     print('        SIG-Task          ')
     print('========================= ')
@@ -35,7 +36,7 @@ def telamenu(): #func de printar interface
     return esc1
 
 
-def lerdic1(): #func de ler dicionário
+def lerdic1():  # func de ler dicionário
     try:
         arq = open("users.dat", "rb")
         us = pickle.load(arq)
@@ -47,7 +48,7 @@ def lerdic1(): #func de ler dicionário
     return us
 
 
-def selectuser(): #func de seleção/validação de user
+def selectuser():  # func de seleção/validação de user
     os.system("cls")
     print("=== Seleção de usuário ===\n")
 
@@ -64,7 +65,7 @@ def selectuser(): #func de seleção/validação de user
         while su != us[wu] and cont < 5:  # valida a senha
             su = input("Senha incorreta, tente novamente: ")
             cont += 1
-        if cont == 5: 
+        if cont == 5:
             print('Número de tentativas de acesso excedidas')
         elif su == us[wu]:
             print('Usuário %s validado' % wu)
@@ -76,7 +77,7 @@ def selectuser(): #func de seleção/validação de user
     print("=== Em Desenvolvimento ===")
 
 
-def caduser(): #func de cadastro de user
+def caduser():  # func de cadastro de user
     os.system("cls")
     print("=== Cadastro de usuário ===")
     nome = input('Insira seu nome: ')
@@ -95,10 +96,11 @@ def caduser(): #func de cadastro de user
         print("=== Cadastro efetuado ===")
 
 
-def atuser(): #func de atualização
+def atuser():  # func de atualização
     os.system("cls")
     print("===  Atualizar usuário   =")
-    nome = input('Insira o nome usuário a se mudar: ') #inserir validação de senha de user
+    # inserir validação de senha de user
+    nome = input('Insira o nome usuário a se mudar: ')
     if nome in us:
         crtz = input('Você tem certeza que deseja mudar? ')
         if crtz.lower() in "sim":
@@ -126,7 +128,7 @@ def atuser(): #func de atualização
         print("Nome não encontrado!")
 
 
-def exuser(): #func de delet user e dados
+def exuser():  # func de delet user e dados
     os.system("cls")
     print("===   Função Deletar   ===")
     nome = input('Insira o usuário que será deletado: ')
@@ -150,13 +152,13 @@ def exuser(): #func de delet user e dados
         print("Usuário não encontrado")
 
 
-def savedic2(ust): #func de salvar no dicionário de dados 
+def savedic2(ust):  # func de salvar no dicionário de dados
     arq1 = open('ustype.dat', 'wb')
     pickle.dump(ust, arq1)
     arq1.close()
 
 
-def lerdic2(): #func de leitura de  tipo
+def lerdic2():  # func de leitura de  tipo
     try:
         arq1 = open("ustype.dat", "rb")
         ust = pickle.load(arq1)
@@ -168,7 +170,7 @@ def lerdic2(): #func de leitura de  tipo
     return ust
 
 
-def lerdic3(): #func de leitura de  evento
+def lerdic3():  # func de leitura de  evento
     try:
         arq2 = open("userevent.dat", "rb")
         usev = pickle.load(arq2)

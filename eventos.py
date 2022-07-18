@@ -2,7 +2,6 @@ import calendar
 import os
 import datetime
 import pickle
-from typing import Dict, List, NoReturn
 import validardata
 
 # na função de atualizar, verificar se a nova atualização tem um nome de algum evento ja existente

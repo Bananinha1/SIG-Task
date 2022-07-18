@@ -11,7 +11,7 @@ def inserirdata():  # função de inserir data
 
     while not(valida):
 
-        dias = input("Por favor insira o dia: "))
+        dias = input("Por favor insira o dia: ")
         mess=(input("Por favor insira o mês: "))
         anos=(input("Por favor insira o ano: "))
 

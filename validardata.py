@@ -10,9 +10,9 @@ def inserirdata():  # função de inserir data
 
     while not(valida):
 
-        dias = input("Por favor insira o dia: "))
-        mess = (input("Por favor insira o mês: "))
-        anos = (input("Por favor insira o ano: "))
+        dias = input("Por favor insira o dia: ")
+        mess = input("Por favor insira o mês: ")
+        anos = input("Por favor insira o ano: ")
 
         if (dias.isdigit() and mess.isdigit() and anos.isdigit()) != True:
             print("Data invalida")

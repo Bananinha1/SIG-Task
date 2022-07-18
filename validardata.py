@@ -11,21 +11,21 @@ def inserirdata():  # função de inserir data
     while not(valida):
 
         dias = input("Por favor insira o dia: ")
-        mess=(input("Por favor insira o mês: "))
-        anos=(input("Por favor insira o ano: "))
+        mess = (input("Por favor insira o mês: "))
+        anos = (input("Por favor insira o ano: "))
 
         if (dias.isdigit() and mess.isdigit() and anos.isdigit()) != True:
             print("Data invalida")
             print("Insira somente numeros")
         else:
 
-            dia=int(dias)
-            mes=int(mess)
-            ano=int(anos)
+            dia = int(dias)
+            mes = int(mess)
+            ano = int(anos)
 
-            anoc=ano % 4
-            anob=ano % 100
-            anod=ano % 400
+            anoc = ano % 4
+            anob = ano % 100
+            anod = ano % 400
 
             if mes > 12 or ano == 0 or mes == 0 or dia == 0:
 
@@ -36,11 +36,11 @@ def inserirdata():  # função de inserir data
 
                     if (anoc == 0) and (anob != 0) or (anod != 0):
 
-                        bi=0
+                        bi = 0
 
                     elif (anoc == 0) and (anob != 0) or (anod == 0):
 
-                        bi=1
+                        bi = 1
 
                 elif (dia >= 32) and ((mes == 1) or (mes == 3) or (mes == 5) or (mes == 7) or (mes == 8) or (mes == 10) or (mes == 12)):
 
@@ -61,20 +61,20 @@ def inserirdata():  # função de inserir data
 
                 else:
 
-                    vld=evalido(dia, mes, ano)
+                    vld = evalido(dia, mes, ano)
 
                     if vld == True:
 
                         print("Data valida")
-                        datavalida=f"{dia:0>2}/{mes:0>2}/{ano}"
+                        datavalida = f"{dia:0>2}/{mes:0>2}/{ano}"
                         print(datavalida)
-                        valida=True
+                        valida = True
 
     return datavalida
 
 
 def evalido(dia, mes, ano):  # função de validação de datas
-    dt=datetime.datetime.now()
+    dt = datetime.datetime.now()
     if ano == dt.year:
         if mes == dt.month:
             if dia >= dt.day:
@@ -93,14 +93,14 @@ def evalido(dia, mes, ano):  # função de validação de datas
 
 def proxsemana(qt):  # função de listagem de eventos
 
-    data=datetime.datetime.today()
-    datat=data.strftime('%d/%m/%Y')
-    lista_datas=[]
+    data = datetime.datetime.today()
+    datat = data.strftime('%d/%m/%Y')
+    lista_datas = []
     lista_datas.append(datat)
     for i in range(1, qt):
 
-        data=data + datetime.timedelta(days = 1)
-        datat=data.strftime('%d/%m/%Y')
+        data = data + datetime.timedelta(days=1)
+        datat = data.strftime('%d/%m/%Y')
         lista_datas.append(datat)
 
     return lista_datas
@@ -108,15 +108,43 @@ def proxsemana(qt):  # função de listagem de eventos
 
 def inserirhora(datavalida):  # função de inserir horas
 
-    valida=False
+    valida = False
 
     while not(valida):
 
         print("Insira o horário do seu evento")
-        hora=str(input(" Insira o horario nesse formato(00:00): "))
-        horad=datetime.datetime.strptime(hora, '%H:%M')
-        horas=horad.hour
-        minutos=horad.minute
+        hora = str(input(" Insira o horario nesse formato(00:00): "))
+        l = list(hora)
+
+        if ":" not in hora:
+            if len(l) == 4:
+                if ' ' in hora:
+                    l[2] = ':'
+                    hora = ''.join(l)
+            if len(l) == 3:
+                save = l[2]
+                save2 = l[3]
+                l.insert[2](':')
+                l[3] = save
+                l.append(save2)
+            elif len(l) < 3:
+                roda = False
+                while roda == False:
+                    hora = input('Por favor, insira um horário válido: ')
+                    l = list(hora)
+                    if len(l) == 3:
+                        roda = True
+        elif len(l) < 3:
+            roda = False
+            while roda == False:
+                hora = input('Por favor, insira um horário válido: ')
+                l = list(hora)
+                if len(l) == 3:
+                    roda = True
+
+        horad = datetime.datetime.strptime(hora, '%H:%M')
+        horas = horad.hour
+        minutos = horad.minute
 
         if horas > 23 or minutos > 59:
 
@@ -124,24 +152,24 @@ def inserirhora(datavalida):  # função de inserir horas
 
         else:
 
-            datah=datetime.datetime.now()
-            datahoje=datah.strftime('%d/%m/%Y')
+            datah = datetime.datetime.now()
+            datahoje = datah.strftime('%d/%m/%Y')
 
             if datahoje == datavalida:
 
-                diah=hrvalida(horas, minutos)
+                diah = hrvalida(horas, minutos)
 
                 if diah == True:
-                    valida=True
+                    valida = True
             else:
-                valida=True
+                valida = True
 
     return hora
 
 
 def hrvalida(horas, minutos):  # validação de horas
 
-    dt=datetime.datetime.now()
+    dt = datetime.datetime.now()
 
     if horas == dt.hour:
         if minutos > dt.minute:

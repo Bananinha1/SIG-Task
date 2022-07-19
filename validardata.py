@@ -115,32 +115,36 @@ def inserirhora(datavalida):  # função de inserir horas
         print("Insira o horário do seu evento")
         hora = str(input(" Insira o horario nesse formato(00:00): "))
         l = list(hora)
-
-        if ":" not in hora:
-            if len(l) == 4:
-                if ' ' in hora:
+        if ":" not in l:
+            if len(l) == 5:
+                if ' ' in l:
                     l[2] = ':'
+                    print (l)
                     hora = ''.join(l)
-            if len(l) == 3:
+            if len(l) == 4:
                 save = l[2]
                 save2 = l[3]
-                l.insert[2](':')
+                l[2] = ':'
                 l[3] = save
                 l.append(save2)
-            elif len(l) < 3:
+                hora = ''.join(l)
+            elif len(l) < 4:
                 roda = False
                 while roda == False:
                     hora = input('Por favor, insira um horário válido: ')
                     l = list(hora)
                     if len(l) == 3:
                         roda = True
-        elif len(l) < 3:
+        elif len(l) < 4:
             roda = False
             while roda == False:
                 hora = input('Por favor, insira um horário válido: ')
                 l = list(hora)
                 if len(l) == 3:
                     roda = True
+        if (l[0].isdigit() and l[1].isdigit() and l[3].isdigit() and l[4].isdigit()) != True:
+            print("Data invalida")
+            print("Insira somente numeros")
 
         horad = datetime.datetime.strptime(hora, '%H:%M')
         horas = horad.hour

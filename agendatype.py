@@ -159,7 +159,7 @@ def deletipo(nome, ust, usev):  # deletando tipo de agenda
         ust[nome] = vprov
         delevs(nome, tipo, usev)
         savedic2(ust)
-        print("=== Tipo {tipo} Deletado ===")
+        print(f"=== Tipo {tipo} Deletado ===")
     else:
         print("Tipo não encontrado")
 

@@ -142,7 +142,7 @@ def delevents(nome, tipo, usev):  # func de deletar eventos
                     if apg.lower() == 'sim':
                         qs = True
                     else:
-                        print()
+                        print('')
         if qs == True:
             usev[nome].remove(events)
             savedic3(usev)
@@ -249,7 +249,7 @@ def attnome(nome, tipo, usev):  # func de atualizar nome
                     print(events[cont], end=' ')
                     cont += 1
                 print('')
-                
+
             else:
                 print('Classificação não encontrada!')
 
@@ -309,7 +309,7 @@ def attdata(nome, tipo, usev):  # func de atualizar data
                     print(events[cont], end=' ')
                     cont += 1
                 print('')
-                
+
             elif att.lower() == "completo":
                 novadata = validardata.inserirdata()
                 events[1] = novadata

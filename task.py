@@ -56,17 +56,17 @@ def selectuser():  # func de seleção/validação de user
         print(users)
     print()
 
-    wu = input("Informe com qual Usuario deseja entrar: ")
+    wu = input("Informe com qual Usuario deseja entrar:\n")
 
     if us.get(wu):
         cont = 0
-        su = input("Insira a senha: ")
+        su = input("Insira a senha:\n")
 
         while su != us[wu] and cont < 5:  # valida a senha
-            su = input("Senha incorreta, tente novamente: ")
+            su = input("Senha incorreta, tente novamente:\n")
             cont += 1
         if cont == 5:
-            print('Número de tentativas de acesso excedidas')
+            print('Número de tentativas de acesso excedido')
         elif su == us[wu]:
             print('Usuário %s validado' % wu)
             agendatype.modulo2(wu, ust, usev)
@@ -74,19 +74,17 @@ def selectuser():  # func de seleção/validação de user
     else:
         print(f'Usuário {wu} não encontrado')
 
-    print("=== Em Desenvolvimento ===")
-
 
 def caduser():  # func de cadastro de user
     os.system("cls")
     print("=== Cadastro de usuário ===")
-    nome = input('Insira seu nome: ')
+    nome = input('Insira seu nome:\n')
 
     if us.get(nome):
 
         print(f'Usuário {nome} já existe')
     else:
-        senha = input('Insira sua senha: ')
+        senha = input('Insira sua senha:\n')
         us[nome] = senha
         ust[nome] = ["Estudantil", "Profissional", "Pessoal"]
         usev[nome] = []
@@ -100,9 +98,9 @@ def atuser():  # func de atualização
     os.system("cls")
     print("===  Atualizar usuário   =")
     # inserir validação de senha de user
-    nome = input('Insira o nome usuário a se mudar: ')
+    nome = input('Insira o nome usuário a se mudar:\n')
     if nome in us:
-        crtz = input('Você tem certeza que deseja mudar? ')
+        crtz = input('Você tem certeza que deseja mudar (sim/não)?\n')
         if crtz.lower() in "sim":
             if nome in us.keys():
 
@@ -131,12 +129,12 @@ def atuser():  # func de atualização
 def exuser():  # func de delet user e dados
     os.system("cls")
     print("===   Função Deletar   ===")
-    nome = input('Insira o usuário que será deletado: ')
+    nome = input('Insira o usuário que será deletado:\n')
     if nome in us.keys():
-        su = input("Insira a senha: ")
+        su = input("Insira a senha:\n")
         cont = 0
         while su != us[nome] and cont < 5:  # valida a senha
-            su = input("Senha incorreta, tente novamente: ")
+            su = input("Senha incorreta, tente novamente:\n")
             cont += 1
         if cont == 5:
             print('Número de tentativas de acesso excedidas')

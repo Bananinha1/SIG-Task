@@ -138,7 +138,7 @@ def delevents(nome, tipo, usev):  # func de deletar eventos
                         print(events[cont], end=' ')
                         cont += 1
                     print()
-                    apg = input("Deseja realmente deletar esse evento?")
+                    apg = input("Deseja realmente deletar esse evento? ")
                     if apg.lower() == 'sim':
                         qs = True
                     else:

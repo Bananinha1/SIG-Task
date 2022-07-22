@@ -1,5 +1,6 @@
 import datetime
 import os
+from re import T
 
 # Adicionar verificação e modificação de string de hora
 
@@ -115,18 +116,17 @@ def inserirhora(datavalida):  # função de inserir horas
         print("Insira o horário do seu evento")
         hora = str(input(" Insira o horario nesse formato(00:00): "))
         l = list(hora)
-
         if ":" not in l:
             if len(l) == 5:
                 l[2] = ':'
-                hora = ' '.join(l)
+                hora = ''.join(l)
             elif len(l) == 4:
                 save = l[2]
                 save2 = l[3]
                 l[2] = ':'
                 l[3] = save
                 l.append(save2)
-                hora = ' '.join(l)
+                hora = ''.join(l)
             elif len(l) <= 3:
                 roda = False
                 while roda == False:
@@ -135,16 +135,17 @@ def inserirhora(datavalida):  # função de inserir horas
                     if len(l) == 5:
                         roda = True
 
-        elif len(l) == 4:
-            if l[1] == ':':
-                l.insert(0, '0')
-                hora = ''.join(l)
-            elif l[2] == ':':
-                l.insert(3, '0')
-                hora = ''.join(l)
+            elif len(l) == 4:
+                if l[1] == ':':
+                    l.insert(0, '0')
+                    hora = ''.join(l)
+                elif l[2] == ':':
+                    l.insert(3, '0')
+                    hora = ''.join(l)
 
-        elif ((l[0].isdigit()) and (l[1].isdigit()) and (l[3].isdigit()) and (l[4].isdigit()) and (l[2] == ":")) == False:
-                print ('Insira apenas números')
+        elif len(l) == 5:
+            if ((l[0].isdigit()) and (l[1].isdigit()) and (l[3].isdigit()) and (l[4].isdigit()) and (l[2] == ":")) == False:
+                print('Insira apenas números')
                 hora = input('Por favor, insira um horário válido: ')
                 l = list(hora)
 
@@ -186,5 +187,3 @@ def hrvalida(horas, minutos):  # validação de horas
         return True
     else:
         return False
-
-# if (hora[0].isdigit()) and (hora[1].isdigit()) and (hora[3].isdigit()) and (hora[4].isdigit() and (hora[2]==":")):

@@ -121,7 +121,6 @@ def inserirhora(datavalida):  # função de inserir horas
                 l[2] = ':'
                 hora = ''.join(l)
             elif len(l) == 4:
-                print('b')
                 save = l[2]
                 save2 = l[3]
                 l[2] = ':'
@@ -129,17 +128,14 @@ def inserirhora(datavalida):  # função de inserir horas
                 l.append(save2)
                 hora = ''.join(l)
             elif len(l) <= 3:
-                print('c')
                 roda = False
                 while roda == False:
                     hora = input('Por favor, insira um horário válido: ')
                     l = list(hora)
-                    print('d')
                     if len(l) == 5:
                         roda = True
 
             elif len(l) == 4:
-                print('e')
                 if l[1] == ':':
                     l.insert(0, '0')
                     hora = ''.join(l)
@@ -149,7 +145,6 @@ def inserirhora(datavalida):  # função de inserir horas
 
         elif len(l) == 5:
             if ((l[0].isdigit()) and (l[1].isdigit()) and (l[3].isdigit()) and (l[4].isdigit()) and (l[2] == ":")) == False:
-                print('f')
                 print('Insira apenas números')
                 hora = input('Por favor, insira um horário válido: ')
                 l = list(hora)
